@@ -66,28 +66,38 @@
      <div id="detailPage" data-role="page" data-theme='b' class="heightAutoPage" > 
         <div data-role="header" data-theme='b' class="headermenu" data-position="absolute" data-tap-toggle="false" >        
         <div class="leftBtn cancelButton" onclick="">
-                <a href="index.html" ><img src="images/back.png" /></a>
-            </div>     
-        <h3 style="display: inline-block;margin-left: 0px !important;">Cheval</h3>
-              
+            <a href="index.html" ><img src="images/back.png" /></a>
+        </div>     
+        <h3 style="display: inline-block;margin-left: 0px !important;">Cheval</h3>              
 	    </div>
              
         <div id="content" data-role="content" data-theme='b'>
             <form action="#">
                 <ul data-role="listview" data-inset="true" id="loginUL">
                     <li data-role="fieldcontain" id="textView">
-                        <label ><span class="translateClass lableClass">Entrer le nom du cheval</span></label>
-                        <input type="text" name="horse_name" id="horseName" value="" data-clear-btn="false" placeholder="">
+                        <label><span class="translateClass lableClass">Entrer le nom du cheval</span></label>
+                        <input type="text" name="horse_name" id="horseName" value="" data-clear-btn="false" placeholder="" />
                     </li>
                     <li data-role="fieldcontain">
-                        <label ><span class="translateClass lableClass">Sélectionner les pattes à traiter </span></label>
+                        <label ><span class="translateClass lableClass">Sélectionner les pattes à traiter </span></label>                      
+                          <table style="width:100%" id="legt_buttons">                        	
+                        	<tr>
+                        	<td><button id="btn_AD" >Patte AD <img src="images/check_mark.png" /></button>
+                        	<td><button id="btn_AG">Patte AG <img src="images/check_mark.png" /></button>
+                        	</tr>
+                        	
+                        	<tr>
+                        	<td><button id="btn_PD">Patte PD <img src="images/check_mark.png" /></button>
+                        	<td><button id="btn_PG">Patte PG <img src="images/check_mark.png" /></button>
+                        	</tr>
+                        </table>
                     </li>
-                     <li>
-                        <button id = "submitButton" type="button" data-theme="b" onclick="detailPage.submitForm();" class="translateClass blueButton">Valider</button>
+                    <li>
+                        <button id = "submitButton" data-theme="b" onclick="detailPage.submitForm();" class="blueButton">Valider</button>
                     </li>
                 </ul>
             </form>
         </div>
-      </div>
+      </div>   
 </body>
 </html>
