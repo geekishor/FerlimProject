@@ -4,8 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
      <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src  'self' data: *;">
     <meta name="format-detection" content="telephone=no" />
-   <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-	-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
  
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
@@ -19,7 +17,8 @@
     <script type="text/javascript" src="js/external/jquerymobile.min.js"></script>
     <script type="text/javascript" src="js/external/cordovaLib.js"></script>
     <script type="text/javascript" src="js/external/jquery.base64.js"></script>
-  
+    <script type="text/javascript" src="js/login.js"></script>
+    
     <title>Ferlim</title>
 </head>
 <body ondragstart="return false;" ondrop="return false;" class="loginBody">
@@ -45,7 +44,7 @@
                         <input type="password" name="txtPassword" id="txtPassword" value="" data-clear-btn="false" placeholder="Entrez votre mot de passe...">
                     </li>
                      <li>
-                        <button id = "loginButton" type="button" data-theme="b" onclick="loginObject.authenticate();" class="translateClass blueButton">Login</button>
+                        <button id = "loginButton" type="button" data-theme="b" onclick="indexObject.validate();" class="translateClass blueButton">Login</button>
                     </li>
                 </ul>
             </form>

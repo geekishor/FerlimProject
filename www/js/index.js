@@ -12,7 +12,7 @@ var indexObject = {
     validate: function () {
         userName = $.trim($("#txtUserName").val().toLowerCase());
         if (userName == "") {
-            alert("Veuillez saisir un nom d'utilisateur.);
+            alert("Veuillez saisir un nom d'utilisateur.");
             return;
         }
         password = $("#txtPassword").val();
@@ -20,8 +20,9 @@ var indexObject = {
             alert("Veuillez saisir un mot de passe.");
             return;
         }
-		setLocalStorage("userName", userName);  
-		indexObject.authenticate();
+		setLocalStorage("userName", userName); 
+		setLocalStorage("password", password);  
+		//indexObject.authenticate();
     },
     
     authenticate: function(){
