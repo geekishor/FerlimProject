@@ -1,4 +1,15 @@
-﻿@font-face {
+﻿#legt_buttons{
+	table-layout: fixed
+}
+#legt_buttons img{
+	height:12px;
+	width:12px;
+	margin-left: 10px;
+}
+.ui-listview > .ui-li-has-thumb > .ui-btn, .ui-listview > .ui-li-static.ui-li-has-thumb {
+	padding: 5px;
+}
+@font-face {
     font-family: 'helvetica'; /*a name to be used later*/
     src: url('font/HelveticaNeue-Thin.ttf'); /*URL to font*/
 }
@@ -250,10 +261,11 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
 /*header with icons*/
 .headermenu {
     width: 100%;
-    text-align: center;
     background-color: #993300 !important;
     box-shadow: 0px 2px 2px grey;
     border-bottom: 0px !important;
+    top: -3px;
+    color: white;
 }
 
 .headermenu,.headermenu a span,.headermenu a span span {
@@ -302,10 +314,8 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
 
 
 .leftBtn img {
-    margin-top:10px;
-    margin-left:10px;
-    width:30px;
-    height:30px;
+    width:50px; /*Ferlim*/
+    height:50px;
 }
 /*header with icons*/
 #imgDomain{

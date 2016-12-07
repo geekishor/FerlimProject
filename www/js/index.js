@@ -26,6 +26,8 @@ var indexObject = {
     },
     
     authenticate: function(){
-    	//webservice call
+    	$.mobile.changePage("#imagePage",{
+    		transistion: "none"
+    	})
     }
 };
