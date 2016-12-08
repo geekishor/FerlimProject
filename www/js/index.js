@@ -29,5 +29,11 @@ var indexObject = {
     	$.mobile.changePage("#imagePage",{
     		transistion: "none"
     	})
-    }
+    },
+	showPopUp: function(){
+		$( "#popupLogin" ).popup( "open" );
+	},
+	closePopUp: function(){
+		$( "#popupLogin" ).popup( "close" );
+	}
 };

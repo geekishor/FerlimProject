@@ -143,9 +143,9 @@
 								à traiter </span></label>
 						<table style="width: 100%" id="photo_buttons">
 							<tr>
-								<td><button id="photoOne">
-										<a href="#popupLogin" data-rel="popup"><img
-											src="images/camera.png" /></a>
+								<td><button id="photoOne" onclick="indexObject.showPopUp()">
+										<a  data-rel="popup"><img
+											src="images/images.png" /></a>
 									</button> 
 									<input type="text" id="photoCommentOne" style="display: none" />
 							</tr>
@@ -184,7 +184,7 @@
 				 <div>
 				<img src="images/gallery.png" />
 			</div>           
-				<button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left">Close</button>
+				<button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="indexObject.closePopUp()">Close</button>
 				        
 			</div>
 			    
