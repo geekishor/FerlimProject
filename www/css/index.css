@@ -1,14 +1,20 @@
 ﻿#legt_buttons{
 	table-layout: fixed
 }
+
+[src=''] {
+    visibility: hidden;
+}
+
 #legt_buttons img{
 	height:12px;
 	width:12px;
-	margin-left: 10px;
+	margin-right:5px;
+	vertical-align: text-top;
 }
 
 .ui-listview > .ui-li-has-thumb > .ui-btn, .ui-listview > .ui-li-static.ui-li-has-thumb {
-	padding: 5px;
+	padding: 13px;
 }
 
 @font-face {
@@ -265,8 +271,7 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
     width: 100%;
     background-color: #993300 !important;
     box-shadow: 0px 2px 2px grey;
-    border-bottom: 0px !important;
-    top: -3px;
+    border-bottom: 0px !important;    
     color: white;
 }
 
@@ -325,6 +330,7 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
 	max-height: 95%;
 	margin: auto;
 	vertical-align: middle;
+	margin-top: 5px;
 }
 .imgDomainMain{
 	margin-top:4px !important;
@@ -405,6 +411,8 @@ body.loading {
 body.loading .modal {
     display: block;
 }
+
+
 
 /* #textView, #dropDownView {
     display: none;
@@ -2998,7 +3006,7 @@ div.ui-input-text.ui-state-disabled {
 .lableClass{
 	color: #993300 !important;
 	font-weight: bold !important;
-	font-size: 13px !important;
+	font-size: 15px !important;
 }
 
 .cardLabel{
@@ -3186,7 +3194,7 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
     }
 	.lableClass{
 		font-weight: bold !important;
-		font-size: 13px !important;
+		font-size: 15px !important;
 	}
 	.valueClass{
 		font-size: 14px !important;

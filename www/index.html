@@ -20,7 +20,8 @@
     <script type="text/javascript" src="js/external/cordovaLib.js"></script>
     <script type="text/javascript" src="js/external/jquery.base64.js"></script>
     <script type="text/javascript" src="ferlimJs/index.js"></script>
-  
+
+ 
     <title>Ferlim</title>
 </head>
 <body ondragstart="return false;" ondrop="return false;" class="loginBody">
@@ -71,33 +72,49 @@
         <h3 style="display: inline-block;margin-left: 0px !important;">Cheval</h3>              
 	    </div>
              
-        <div id="content" data-role="content" data-theme='b'>
-            <form action="#">
+        <div id="content" data-role="content" data-theme='b' >
+            
                 <ul data-role="listview" data-inset="true" id="loginUL">
-                    <li data-role="fieldcontain" id="textView">
-                        <label><span class="translateClass lableClass">Entrer le nom du cheval</span></label>
+                    <li data-role="fieldcontain" >
+                        <label><span class="lableClass">Entrer le nom du cheval</span></label>
                         <input type="text" name="horse_name" id="horseName" value="" data-clear-btn="false" placeholder="" />
                     </li>
-                    <li data-role="fieldcontain">
-                        <label ><span class="translateClass lableClass">Sélectionner les pattes à traiter </span></label>                      
+                    <li data-role="fieldcontain" >
+                        <label><span class="lableClass">Sélectionner les pattes à traiter </span></label>                      
                           <table style="width:100%" id="legt_buttons">                        	
                         	<tr>
-                        	<td><button id="btn_AD" >Patte AD <img src="images/check_mark.png" /></button>
-                        	<td><button id="btn_AG">Patte AG <img src="images/check_mark.png" /></button>
+                        	<td><button id="btn_AD" data-theme="a" class="addCheck"><img src="" /> Patte AD</button></td>
+                        	<td><button id="btn_AG" data-theme="a" class="addCheck"><img src="" /> Patte AG</button></td>
                         	</tr>
                         	
                         	<tr>
-                        	<td><button id="btn_PD">Patte PD <img src="images/check_mark.png" /></button>
-                        	<td><button id="btn_PG">Patte PG <img src="images/check_mark.png" /></button>
+                        	<td><button id="btn_PD" data-theme="a" class="addCheck"><img src="" /> Patte PD</button></td>
+                        	<td><button id="btn_PG" data-theme="a" class="addCheck"><img src="" /> Patte PG</button></td>
                         	</tr>
                         </table>
                     </li>
                     <li>
-                        <button id = "submitButton" data-theme="b" onclick="detailPage.submitForm();" class="blueButton">Valider</button>
+                        <button id="Btn_next" data-theme="b" onclick="loginObject.goToAddImage()" class="blueButton">Valider</button>                        
                     </li>
                 </ul>
-            </form>
+            
         </div>
       </div>   
+      <div id="addImage" data-role="page" data-theme='b' class="heightAutoPage" > 
+        <div data-role="header" data-theme='b' class="headermenu" data-position="absolute" data-tap-toggle="false" >        
+        <div class="leftBtn cancelButton" onclick="">
+            <a href="index.html" ><img src="images/back.png" /></a>
+        </div>     
+        <h3 style="display: inline-block;margin-left: 0px !important;">Add Image</h3>              
+	    </div>
+             
+        <div id="content" data-role="content" data-theme='b' >
+            
+                <button id="addFromCamera" >Camera</button>
+                <button id="addFromGallery" >Gallery</button>
+                
+                <img id="smallImage" style="width:400px; height:400px;"></img>
+        </div>
+      </div>      
 </body>
 </html>
