@@ -49,7 +49,6 @@ var indexObject = {
 	},
 	
 	showPopUp: function(obj){
-		var height = $(window).height() - 400 + "px";
 		var width = $(window).width()  - 80 + "px";
 		$( "#popupLogin" ).popup( "open" );
 		$(".popupLogin").css('width', width);
@@ -57,9 +56,11 @@ var indexObject = {
 		
 		indexObject.photoId = $(obj).attr('id');
 	},	
+	
 	closePopUp: function(){		
 		$( "#popupLogin" ).popup( "close" );
 	},
+	
 	resizePopup: function() {	
 		setTimeout(function(){			
 		    var popupWidth = $('.ui-page-active .ui-popup-active').width();
@@ -73,13 +74,13 @@ var indexObject = {
 		}, 100);
 	},
 	openCamera: function(){
-		$( "#popupLogin" ).popup( "close" );
-		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 , destinationType: Camera.DestinationType.DATA_URL});
+		$( "#popupLogin" ).popup("close");
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 40 , destinationType: Camera.DestinationType.DATA_URL});
 	},
 	openGallery: function(){
-		$( "#popupLogin" ).popup( "close" );
+		$( "#popupLogin" ).popup("close");
 		var destinationType = navigator.camera.DestinationType;;
-		navigator.camera.getPicture(onPhotoDataSuccess, function(error){alert(error);}, {quality: 50, destinationType: destinationType.DATA_URL, sourceType: 0 });
+		navigator.camera.getPicture(onPhotoDataSuccess, function(error){alert(error);}, {quality: 40, destinationType: destinationType.DATA_URL, sourceType: 0 });
 	} 
 }
 
@@ -93,12 +94,9 @@ function onPhotoDataSuccess(imageData) {
     smallImage.attr('src','');
     smallImage.attr('src','data:image/jpeg;base64,' + imageData);
     
-	 var folderpath = "file:///storage/emulated/0/";
-	 folderpath = cordova.file.dataDirectory;
-	 
-	 var filename = "myimage.jpeg";
+	 var filename = indexObject.photoId + ".jpg";
 	 var dataType = "image/jpeg";
-	 savebase64AsImageFile(folderpath,filename,imageData,dataType);
+	 savebase64AsImageFile(filename,imageData,dataType);
 }
 
 function onFail(message) {
@@ -119,17 +117,17 @@ $(function() {
 	});
   	
   	
-	$('#imagePage').on('pageshow',function(){
+	$('#imagePage').on('pageshow', function(){
 		var horse = localStorage.getItem('horseName');
 		if(horse.trim().length > 0){
 			$('#label-horse').text(horse);
 		}
-		$('#globalComment').css('width', '80px !important');
+	
 	});
 });
 
 
-$(document).on("pageshow",function(){
+$(document).on("pageshow", function(){
 	
     var screen = $.mobile.getScreenHeight();
 	var content = screen - 53;
@@ -167,7 +165,7 @@ function b64toBlob(b64Data, contentType, sliceSize) {
   return blob;
 }
 
-function savebase64AsImageFile(folderpath,filename,content,contentType){
+function savebase64AsImageFile(filename,content,contentType){
 // Convert the base64 string in a Blob
 var DataBlob = b64toBlob(content,contentType);
 console.log("Starting to write the file :3");
@@ -178,10 +176,10 @@ window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,  function(dir) {
     		subDir.getFile(filename, {create:true}, function(file) {
                 console.log("File created succesfully.");
                 file.createWriter(function(fileWriter) {
-                    console.log("Writing content to file path: "+ folderpath);
+                    console.log("Writing content to file ");
                     fileWriter.write(DataBlob);
                 }, function(){
-                    alert('Unable to save file in path '+ folderpath);
+                    alert('Unable to save file in path ');
                 });
         	});
     	},function(e){alert(e);});    	
