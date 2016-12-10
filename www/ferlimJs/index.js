@@ -1,6 +1,6 @@
 
-var loginObject = {
-
+var indexObject = {
+	photoId : '',
 	authenticate : function() {
 
 		/*
@@ -12,106 +12,135 @@ var loginObject = {
 		 * return; }
 		 */
 		// setLocalStorage("userName", userName);
-		$.mobile.changePage("#detailPage", {
-			transition : "none"
-		});
+		
+		setTimeout(function(){
+			$.mobile.changePage("#detailPage", {
+				transition : "none"
+			});
+		},200);
 	},
 
-	goToAddImage : function() {
+	goToAddImage : function() {		
 		var isSelected = localStorage.getItem("legSelected");
 		var horseName = $('#horseName').val();
 		
 		if (horseName.trim().length <= 0) {
 			alert('Please provide the horse name.');
 			return;
+		}else{
+			localStorage.setItem('horseName',horseName);
 		}			
 			
 		if (isSelected.length > 0) {
-			$.mobile.changePage("#addImage", {
-				transition : "none"
-			});
+			$('#horseName').blur();
+			setTimeout(function(){
+				$.mobile.changePage("#imagePage", {
+					transition : "none"
+				});
+			},500);			
+		
 		}else{
-			alert('Please select atleast one option.');
+			alert('Please select at least one option.');
 		}
-	}
-
+	},
 	
+	goToDetailPage : function(){
+		$.mobile.changePage($('#detailPage'));
+	},
+	
+	showPopUp: function(obj){
+		var height = $(window).height() - 400 + "px";
+		var width = $(window).width()  - 80 + "px";
+		$( "#popupLogin" ).popup( "open" );
+		$(".popupLogin").css('width', width);
+		indexObject.resizePopup();
+		
+		indexObject.photoId = $(obj).attr('id');
+	},	
+	closePopUp: function(){		
+		$( "#popupLogin" ).popup( "close" );
+	},
+	resizePopup: function() {	
+		setTimeout(function(){			
+		    var popupWidth = $('.ui-page-active .ui-popup-active').width();
+		    $("#changePasswordForm").css("width",($("#changePassword").width()-25)+"px");
+		    var popupHeight = $('.ui-page-active .ui-popup-active').height();		    
+		    var left = ($(window).width() - popupWidth)/2;
+		    var top = ($(window).height() - popupHeight)/2;
+		    $('.ui-page-active .ui-popup-active').css("position","fixed");
+		    $('.ui-page-active .ui-popup-active').css({"left":left+"px","top":top+"px"});
+		    
+		}, 100);
+	},
+	openCamera: function(){
+		$( "#popupLogin" ).popup( "close" );
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 , destinationType: Camera.DestinationType.DATA_URL});
+	},
+	openGallery: function(){
+		$( "#popupLogin" ).popup( "close" );
+		var destinationType = navigator.camera.DestinationType;;
+		navigator.camera.getPicture(onPhotoDataSuccess, function(error){alert(error);}, {quality: 50, destinationType: destinationType.DATA_URL, sourceType: 0 });
+	} 
 }
 
 
+function onPhotoDataSuccess(imageData) {     
+    var smallImage = $('#'+ indexObject.photoId);
+    var imgHeight = screen.height - 200 + 'px'; 
+    var imgWidth = screen.width - 30 + 'px';
+    smallImage.attr('height',imgHeight);
+    smallImage.attr('width',imgWidth);
+    smallImage.attr('src','');
+    smallImage.attr('src','data:image/jpeg;base64,' + imageData);
+    
+	 var folderpath = "file:///storage/emulated/0/";
+	 folderpath = cordova.file.dataDirectory;
+	 
+	 var filename = "myimage.jpeg";
+	 var dataType = "image/jpeg";
+	 savebase64AsImageFile(folderpath,filename,imageData,dataType);
+}
+
+function onFail(message) {
+    alert('Failed to load picture because: ' + message);
+}
+
 $(function() {
-			
+
+	document.addEventListener('deviceready', function(){ }, false);
+	
 	localStorage.setItem("legSelected", "");
+	localStorage.setItem('horseName',"");
   	$('.addCheck').click(function(){    		
 		var objId = $(this).attr('id'); 
 		$('.addCheck img').attr('src','');
 		$('#'+ objId +' img').attr('src','images/check_mark.png');
-		localStorage.setItem("legSelected", "true");
+		localStorage.setItem("legSelected", objId);
 	});
   	
   	
-	$('#addFromCamera').click(function(){
-		capturePhoto();
-		function capturePhoto() {
-			// Take picture using device camera and retrieve image as base64-encoded string
-			    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 , destinationType: Camera.DestinationType.DATA_URL});
-			}
-
-			//Callback function when the picture has been successfully taken
-			function onPhotoDataSuccess(imageData) {                
-			    // Get image handle
-			    var smallImage = document.getElementById('smallImage');
-
-			    // Unhide image elements
-			    smallImage.style.display = 'block';
-			    smallImage.src = "data:image/jpeg;base64," + imageData;
-			    
-			/* var block = imageData.split(";");
-			 var dataType = block[0].split(":")[1];
-			 var realData = block[1].split(",")[1];*/
-
-			 var folderpath = "file:///storage/emulated/0/";
-			 folderpath = cordova.file.dataDirectory;
-			 
-			 var filename = "myimage.jpeg";
-			 var dataType = "image/jpeg";
-			 savebase64AsImageFile(folderpath,filename,imageData,dataType);
-			}
-
-			//Callback function when the picture has not been successfully taken
-			function onFail(message) {
-			    alert('Failed to load picture because: ' + message);
-			}
-	});
-	
-	
-	$('#addFromGallery').click(function(){
-		var destinationType = navigator.camera.DestinationType;;
-		  navigator.camera.getPicture(onPhotoURISuccess, function(error){alert(error);}, {quality: 50, destinationType: destinationType.DATA_URL, sourceType: 0 });
-		  
-		  function onPhotoURISuccess(imageData){
-			   // Get image handle
-			    var smallImage = document.getElementById('smallImage');
-
-			    // Unhide image elements
-			    smallImage.style.display = 'block';
-			    smallImage.src = "data:image/jpeg;base64," + imageData;
-		  }
+	$('#imagePage').on('pageshow',function(){
+		var horse = localStorage.getItem('horseName');
+		if(horse.trim().length > 0){
+			$('#label-horse').text(horse);
+		}
+		$('#globalComment').css('width', '80px !important');
 	});
 });
 
-$(document).on("pagebeforeshow",function(){
-	  
-  	var screen = $.mobile.getScreenHeight();
 
-	var header = $(".ui-header").hasClass("ui-header-fixed") ? $(".ui-header").outerHeight()  - 1 : $(".ui-header").outerHeight();
-
-	var contentCurrent = $(".ui-content").outerHeight() - $(".ui-content").height();
-
-	var content = screen - header - contentCurrent;
-
-	$(".ui-content").height(content);
+$(document).on("pageshow",function(){
 	
+    var screen = $.mobile.getScreenHeight();
+	var content = screen - 53;
+	
+	if($(".ui-page-active").attr("id") == 'page'){
+		content = screen - 50  - $('#header').outerHeight() - 30;
+	}
+
+	$(".ui-content").height(content + 'px');
+	
+  	
 });
 
 function b64toBlob(b64Data, contentType, sliceSize) {
@@ -141,9 +170,7 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 function savebase64AsImageFile(folderpath,filename,content,contentType){
 // Convert the base64 string in a Blob
 var DataBlob = b64toBlob(content,contentType);
-
 console.log("Starting to write the file :3");
-
 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,  function(dir) {
     console.log("Access to the directory granted succesfully" );
     dir.root.getDirectory('Ferlim', { create: true }, function (dirEntry) {
