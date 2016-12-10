@@ -23,6 +23,9 @@
 <script type="text/javascript" src="js/external/cordovaLib.js"></script>
 <script type="text/javascript" src="js/external/jquery.base64.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="ferlimJs/index.js"></script>
+<script type="text/javascript" src="js/imagePage.js"></script>
+<script type="text/javascript" src="js/detailPage.js"></script>
 
 <title>Ferlim</title>
 </head>
@@ -72,125 +75,128 @@
 	</div>
 
 
-	<div id="detailPage" data-role="page" data-theme='b'
-		class="heightAutoPage">
+	<div id="detailPage" data-role="page" data-theme='b' class="heightAutoPage" > 
+        <div data-role="header" data-theme='b' class="headermenu" data-position="absolute" data-tap-toggle="false" >        
+        <div class="leftBtn cancelButton" onclick="">
+            <a href="index.html" ><img src="images/back.png" /></a>
+        </div>     
+        <h3 style="display: inline-block;margin-left: 0px !important;">Cheval</h3>              
+	    </div>
+             
+        <div id="content" data-role="content" data-theme='b' >
+            
+                <ul data-role="listview" data-inset="true" id="loginUL">
+                    <li data-role="fieldcontain" >
+                        <label><span class="lableClass">Entrer le nom du cheval</span></label>
+                        <input type="text" name="horse_name" id="horseName" value="" data-clear-btn="false" placeholder="" />
+                    </li>
+                    <li data-role="fieldcontain" >
+                        <label><span class="lableClass">Sélectionner les pattes à traiter </span></label>                      
+                          <table style="width:100%" id="legt_buttons">                        	
+                        	<tr>
+                        	<td><button id="btn_AD" data-theme="a" class="addCheck"><img src="" /> Patte AD</button></td>
+                        	<td><button id="btn_AG" data-theme="a" class="addCheck"><img src="" /> Patte AG</button></td>
+                        	</tr>
+                        	
+                        	<tr>
+                        	<td><button id="btn_PD" data-theme="a" class="addCheck"><img src="" /> Patte PD</button></td>
+                        	<td><button id="btn_PG" data-theme="a" class="addCheck"><img src="" /> Patte PG</button></td>
+                        	</tr>
+                        </table>
+                    </li>
+                    <li>
+                        <button id="Btn_next" data-theme="b" onclick="detailPageObject.goToAddImage()" class="blueButton">Valider</button>                        
+                    </li>
+                </ul>
+            
+        </div>
+      </div> 
+
+	<div id="imagePage" data-role="page" data-theme='b' class="heightAutoPage">
 		<div data-role="header" data-theme='b' class="headermenu"
 			data-position="absolute" data-tap-toggle="false">
 			<div class="leftBtn cancelButton" onclick="">
-				<a href="index.html"><img src="images/back.png" /></a>
+				<img src="images/back.png" onclick="$.mobile.changePage($('#detailPage'));"/>
 			</div>
-			<h3 style="display: inline-block; margin-left: 0px !important;">Cheval</h3>
-
+			<h3 style="display: inline-block; margin-left: 0px !important;">Ajouter les photos</h3>
 		</div>
 
 		<div id="content" data-role="content" data-theme='b'>
-			<form action="#">
+			
 				<ul data-role="listview" data-inset="true" id="loginUL">
-					<li data-role="fieldcontain" id="textView"><label><span
-							class="translateClass lableClass">Entrer le nom du cheval</span></label>
-						<input type="text" name="horse_name" id="horseName" value=""
-						data-clear-btn="false" placeholder="" /></li>
-					<li data-role="fieldcontain"><label><span
-							class="translateClass lableClass">Sélectionner les pattes
-								à traiter </span></label>
-						<table style="width: 100%" id="legt_buttons">
-							<tr>
-								<td><button id="btn_AD">
-										Patte AD <img src="images/check_mark.png" />
-									</button>
-								<td><button id="btn_AG">
-										Patte AG <img src="images/check_mark.png" />
-									</button>
-							</tr>
-
-							<tr>
-								<td><button id="btn_PD">
-										Patte PD <img src="images/check_mark.png" />
-									</button>
-								<td><button id="btn_PG">
-										Patte PG <img src="images/check_mark.png" />
-									</button>
-							</tr>
-						</table></li>
-					<li>
-						<button id="submitButton" data-theme="b"
-							onclick="detailPage.submitForm();" class="blueButton">Valider</button>
-					</li>
-				</ul>
-			</form>
-		</div>
-	</div>
-
-	<div id="imagePage" data-role="page" data-theme='b'
-		class="heightAutoPage">
-		<div data-role="header" data-theme='b' class="headermenu"
-			data-position="absolute" data-tap-toggle="false">
-			<div class="leftBtn cancelButton" onclick="">
-				<a href="index.html"><img src="images/back.png" /></a>
-			</div>
-			<h3 style="display: inline-block; margin-left: 0px !important;">Ajouter
-				les photos</h3>
-		</div>
-
-		<div id="content" data-role="content" data-theme='b'>
-			<form action="#">
-				<ul data-role="listview" data-inset="true" id="loginUL">
-					<li data-role="fieldcontain" id="textView"><label
-						id="horseName"><span class="translateClass lableClass">Entrer
-								le nom du cheval</span></label></li>
-					<li data-role="fieldcontain"><label><span
-							class="translateClass lableClass">Sélectionner les pattes
-								à traiter </span></label>
+					<li data-role="fieldcontain" id="textView">
+					<label><span id="label-horse" class="lableClass horseNameHeading" ></span></label></li>
+					<li data-role="fieldcontain">
 						<table style="width: 100%" id="photo_buttons">
 							<tr>
-								<td><button id="photoOne" onclick="indexObject.showPopUp()">
-										<a  data-rel="popup"><img
-											src="images/images.png" /></a>
-									</button> 
-									<input type="text" id="photoCommentOne" style="display: none" />
+								<td>
+									<div class="photoBlocks" >
+										<img id="photoOne" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
+									</div> 
+									<hr />
+									<textarea placeholder="Commentaire..." id="photoCommentOne" ></textarea>
+								</td>	
 							</tr>
 
 							<tr>
-								<td><button id="photoTwo">
-										<img src="images/images.png" />
-									</button>
+								<td>
+									<div class="photoBlocks" >
+										<img id="photoTwo" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+									</div>
+									<hr />
+									<textarea placeholder="Commentaire..." id="photoCommentTwo" ></textarea>
+								</td>	
 							</tr>
 							<tr>
-								<td><button id="photoThree">
-										<img src="images/images.png" />
-									</button>
+								<td><div class="photoBlocks" >
+										<img id="photoThree" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+									</div>
+									<hr />
+									<textarea placeholder="Commentaire..." id="photoCommentThree" ></textarea>
+								</td>	
 							</tr>
 							<tr>
-								<td><button id="photoFour">
-										<img src="images/images.png" />
-									</button>
+								<td><div class="photoBlocks" >
+										<img id="photoFour" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+									</div>
+									<hr />
+									<textarea placeholder="Commentaire..." id="photoCommentFour" ></textarea>
+									
+									</td>
+							</tr>
+							
+							<tr>
+							<td>
+							<br />
+							<br />
+							<textarea placeholder="Commentaire global..." id="globalComment" ></textarea></td>
 							</tr>
 						</table></li>
+						
 					<li>
 						<button id="submitButton" data-theme="b"
-							onclick="detailPage.submitForm();" class="blueButton">Submit</button>
+							onclick="" class="blueButton">Valider</button>
 					</li>
 				</ul>
-			</form>
+			
 		</div>
 
-		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all popupDialog">
+		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all popupDialog" style="width:300px;">
 			             
 			<div style="padding: 10px 20px;">
 				            
-			<div>
-				<img src="images/camera.png" />
-				<label>Open Camera</label>
+				<div onclick="imagePageObject.openCamera();">
+					<img src="images/camera.png" style="vertical-align:middle" />
+					<span>Open Camera</span>
+				</div>
+				
+				<div onclick="imagePageObject.openGallery();">
+					<img src="images/gallery.png" style="vertical-align:middle" />
+					<span>Choose from Gallery</span>
+				</div>
+				<button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="imagePageObject.closePopUp()">Close</button>     
 			</div>
-				 <div>
-				<img src="images/gallery.png" />
-				<label>Open Gallery</label>
-			</div>           
-				<button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="indexObject.closePopUp()">Close</button>
-				        
-			</div>
-			    
-
 		</div>
 	</div>
 

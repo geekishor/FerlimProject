@@ -1,13 +1,38 @@
-﻿#legt_buttons{
+﻿.globalComment{
+	height: 80px !important;
+}
+#content {
+	background-color: #e9e9e9 !important;
+}
+hr {
+	background: cadetblue;
+}
+#label-horse {
+	font-size: 25px !important;
+}
+.horseNameHeading {
+	display:block;
+	font-size:22px !important;
+	text-align:center;
+}
+#legt_buttons{
 	table-layout: fixed
+}
+[src=''] {
+    visibility: hidden;
 }
 #legt_buttons img{
 	height:12px;
 	width:12px;
-	margin-left: 10px;
+	margin-right:5px;
+	vertical-align: text-top;
+}
+.photoBlocks img{
+	display:block;
+	margin:0 auto;
 }
 .ui-listview > .ui-li-has-thumb > .ui-btn, .ui-listview > .ui-li-static.ui-li-has-thumb {
-	padding: 5px;
+	padding: 13px;
 }
 @font-face {
     font-family: 'helvetica'; /*a name to be used later*/
@@ -264,7 +289,6 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
     background-color: #993300 !important;
     box-shadow: 0px 2px 2px grey;
     border-bottom: 0px !important;
-    top: -3px;
     color: white;
 }
 
@@ -323,6 +347,7 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
 	max-height: 95%;
 	margin: auto;
 	vertical-align: middle;
+	margin-top: 5px;
 }
 .imgDomainMain{
 	margin-top:4px !important;
@@ -2996,7 +3021,7 @@ div.ui-input-text.ui-state-disabled {
 .lableClass{
 	color: #993300 !important;
 	font-weight: bold !important;
-	font-size: 13px !important;
+	font-size: 15px !important;
 }
 
 .cardLabel{
@@ -3075,7 +3100,7 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
 }
 
 .loginBody #header.ui-header {
-	margin:1px 0px 0px 0px !important;
+	margin:15px 0px 13px 0px !important;
 }
 .controlButton > span {
 	color: black !important;
@@ -3103,6 +3128,21 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
 	background-color: #e9e9e9 !important;
 }
 
+.autosaving{
+    position: fixed;
+	top: 3.8em;
+    left: 28%;
+    width: 40%;
+    padding-top: 6px;
+    height: 25px;
+    background: white;
+    border-radius: 3px;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 4px 1px #EDEDED;
+    z-index: 9999;
+	font-size: 14px;
+    font-weight: bold;
+}
 .filterContent{
 	padding: 5px 5px 0px 5px;
 	background: #ffffff !important;
@@ -3124,6 +3164,12 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
 .ui-page-theme-b .ui-focus .ui-btn-active{
 	border: 1px solid #EDEDED!important;
 	resize: none !important;
+}
+
+#popupLogin{
+	padding: 10px 20px; 
+	text-align: center;
+	width:300px;
 }
 
 
