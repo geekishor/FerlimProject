@@ -23,7 +23,6 @@
 <script type="text/javascript" src="js/external/cordovaLib.js"></script>
 <script type="text/javascript" src="js/external/jquery.base64.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="ferlimJs/index.js"></script>
 <script type="text/javascript" src="js/imagePage.js"></script>
 <script type="text/javascript" src="js/detailPage.js"></script>
 
@@ -143,6 +142,7 @@
 								<td>
 									<div class="photoBlocks" >
 										<img id="photoTwo" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentTwo" ></textarea>
@@ -151,6 +151,7 @@
 							<tr>
 								<td><div class="photoBlocks" >
 										<img id="photoThree" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentThree" ></textarea>
@@ -159,6 +160,7 @@
 							<tr>
 								<td><div class="photoBlocks" >
 										<img id="photoFour" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentFour" ></textarea>
@@ -182,8 +184,7 @@
 			
 		</div>
 
-		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all popupDialog" style="width:300px;">
-			             
+		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all popupDialog" style="width:300px;">           
 			<div style="padding: 10px 20px;">
 				            
 				<div onclick="imagePageObject.openCamera();">

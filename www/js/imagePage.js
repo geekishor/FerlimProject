@@ -51,8 +51,9 @@ var imagePageObject = {
 	},
 
 	deleteImage : function(obj) {
-		var photoId = $(obj).attr('id');
-		deleteImageFile("myimage.jpeg", indexObject.photoId);
+		var filename = indexObject.photoId + ".jpg";
+		var deleteImageId = $(obj).prev().attr('id');
+		deleteImageFile(filename, deleteImageId);
 	}
 }
 
@@ -88,11 +89,11 @@ function onPhotoDataSuccess(imageData) {
 	smallImage.attr('width', imgWidth);
 	smallImage.attr('src', '');
 	smallImage.attr('src', 'data:image/jpeg;base64,' + imageData);
-	$('.wrongImg').css("display", "block");
+	smallImage.next().css("display", "block");
 	var folderpath = "file:///storage/emulated/0/";
 	folderpath = cordova.file.dataDirectory;
 
-	var filename = "myimage.jpeg";
+	var filename = indexObject.photoId + ".jpg";
 	var dataType = "image/jpeg";
 	savebase64AsImageFile(folderpath, filename, imageData, dataType);
 }
@@ -178,8 +179,7 @@ function deleteImageFile(fileName, photoId) {
 						$('#' + photoId).attr("src","images/images.png");
 						$('#' + photoId).attr("height","");
 						$('#' + photoId).attr("width","");
-						$('.wrongImg').css("display", "none");
-						alert("Image deleted");
+						$('#' + photoId).next().css("display", "none");
 					}, function() {
 						alert("Delete Errro " + error.code);
 					}, function() {

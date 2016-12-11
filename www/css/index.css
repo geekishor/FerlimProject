@@ -711,11 +711,10 @@ span.spancontrolLabelEN{
 }
 
 .wrongImg{
-	position: absolute;
-	width: 17px;
-	height: 17px;
-	top: 2px;
-  	right: 0px;
+	/* position: absolute; */
+    width: 24px;
+    height: 24px;
+    right: 19px;
 }
 .videoDialogCloseButton{
 	position: absolute;
@@ -3165,11 +3164,56 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
 	border: 1px solid #EDEDED!important;
 	resize: none !important;
 }
-
-#popupLogin{
-	padding: 10px 20px; 
-	text-align: center;
-	width:300px;
+.filterbtn{
+	float: left;
+	width: calc(33.4% - 4px) !important;
+	margin-bottom: 5px !important;
 }
-
-
+.filtrDropDown{
+	color: #000000;
+	font-size: 15px !important;
+	font-weight: bold !important;
+	height: 16px !important;
+}
+.filterFooter{
+	margin-top: 10px !important;
+}
+@media screen and (max-device-width : 480px), (max-device-width : 1204px)
+{
+    body
+    {
+        font-size:14px !important;
+    }
+    .labelControl, .ui-btn-text,.listHeade{
+        font-size: 16px;
+    }
+    #loadingText{
+        font-size: 10px;
+}
+    .attachmentindextext,.menuIconDiv a p,.block p{
+        font-size: 12px;
+    }
+    .controlLabel, .controlImageLabel,#lastSyncDateTimeSpan, .lableClass,.calendar>table>tbody>tr>td>a{
+        font-size: 13px;
+    }
+    .formColumn [data-role=button] .ui-btn-inner .ui-btn-text, .formColumn [data-role=button] .ui-btn-inner, .forminfo div div{
+        font-size: 15px;
+    }
+    .dateCreatedBlock{
+        font-size: 17px;
+    }
+    .whiteText, .whiteTextInner, #sub{
+        font-size: 18px;
+    }
+	.lableClass{
+		font-weight: bold !important;
+		font-size: 15px !important;
+	}
+	.valueClass{
+		font-size: 14px !important;
+		font-weight: bold;
+	}
+	.cardfield{
+		width: 195px !important;
+	}
+}
