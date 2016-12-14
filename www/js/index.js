@@ -8,6 +8,13 @@ var indexObject = {
 	onDeviceReady : function() {
 		userName = "";
 		password = "";
+		
+		window.addEventListener('native.keyboardshow', function(e){ 
+		    setTimeout(function() {
+		        document.activeElement.scrollIntoViewIfNeeded();
+		    }, 100);
+		});
+
 	},
 	
 	validate : function() {
@@ -28,7 +35,7 @@ var indexObject = {
 
 	authenticate : function() {
 		$.mobile.changePage("#detailPage", {
-			transistion : "none"
+			transistion : "fade"
 		})
 	}
 };

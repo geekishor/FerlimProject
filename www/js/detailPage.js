@@ -14,7 +14,7 @@ var detailPageObject = {
 				$('#horseName').blur();
 				setTimeout(function(){
 					$.mobile.changePage("#imagePage", {
-						transition : "none"
+						transition : "fade"
 					});
 				},500);			
 			
