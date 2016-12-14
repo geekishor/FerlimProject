@@ -4,7 +4,7 @@ var detailPageObject = {
 			var horseName = $('#horseName').val();
 			
 			if (horseName.trim().length <= 0) {
-				alert('Please provide the horse name.');
+				alert('Veuillez indiquer le nom du cheval.');
 				return;
 			}else{
 				localStorage.setItem('horseName',horseName);
@@ -19,7 +19,7 @@ var detailPageObject = {
 				},500);			
 			
 			}else{
-				alert('Please select at least one option.');
+				alert('Veuillez sélectionner au moins une option.');
 			}
 		}
 }

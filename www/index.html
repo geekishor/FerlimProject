@@ -86,7 +86,7 @@
             
                 <ul data-role="listview" data-inset="true" id="loginUL">
                     <li data-role="fieldcontain" >
-                        <label><span class="lableClass">Entrer le nom du cheval</span></label>
+                        <label style="width:100%"><span class="lableClass">Entrer le nom du cheval</span></label>
                         <input type="text" name="horse_name" id="horseName" value="" data-clear-btn="false" placeholder="" />
                     </li>
                     <li data-role="fieldcontain" >
@@ -104,7 +104,7 @@
                         </table>
                     </li>
                     <li>
-                        <button id="Btn_next" data-theme="b" onclick="detailPageObject.goToAddImage()" class="blueButton">Valider</button>                        
+                        <button id="Btn_next" data-theme="b" onclick="detailPageObject.goToAddImage()" class="blueButton" type="button">Valider</button>                        
                     </li>
                 </ul>
             
@@ -164,7 +164,6 @@
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentFour" ></textarea>
-									
 									</td>
 							</tr>
 							
@@ -172,12 +171,12 @@
 							<td>
 							<br />
 							<br />
-							<textarea placeholder="Commentaire global..." id="globalComment" ></textarea></td>
+							<textarea data-role="none" style="min-height:100px !important;width:99%;" placeholder="Commentaire global..." id="globalComment" ></textarea></td>
 							</tr>
 						</table></li>
 						
 					<li>
-						<button id="submitButton" data-theme="b"
+						<button id="submitButton" data-theme="b" type="button"
 							onclick="" class="blueButton">Valider</button>
 					</li>
 				</ul>
@@ -196,11 +195,12 @@
 					<img src="images/gallery.png" style="vertical-align:middle" />
 					<span>Choose from Gallery</span>
 				</div>
-				<button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="imagePageObject.closePopUp()">Close</button>     
+				<button type="button" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="imagePageObject.closePopUp()">Close</button>     
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<script type="text/javascript">
 		indexObject.initialize();
 		$("form").submit(function(e) {
@@ -209,5 +209,7 @@
 			return false;
 		});
 	</script>
+	
+	
 </body>
 </html>

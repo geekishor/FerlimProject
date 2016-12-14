@@ -711,6 +711,7 @@ span.spancontrolLabelEN{
 }
 
 .wrongImg{
+	margin-top: 15px !important;
 	/* position: absolute; */
     width: 24px;
     height: 24px;
@@ -1358,6 +1359,8 @@ input, textarea{
 	padding-top: 4px !important;
 	margin-top: 0px !important;
 } 
+
+
 
 .transFormClass {
     width: 100%;

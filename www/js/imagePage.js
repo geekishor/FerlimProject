@@ -7,7 +7,7 @@ var imagePageObject = {
 		var horseName = $('#horseName').val();
 
 		if (horseName.trim().length <= 0) {
-			alert('Please provide the horse name.');
+			alert('Veuillez indiquer le nom du cheval.');
 			return;
 		}
 
@@ -16,7 +16,7 @@ var imagePageObject = {
 				transition : "none"
 			});
 		} else {
-			alert('Please select atleast one option.');
+			alert('Veuillez sélectionner au moins une option.');
 		}
 	},
 
@@ -51,14 +51,21 @@ var imagePageObject = {
 	},
 
 	deleteImage : function(obj) {
-		var filename = indexObject.photoId + ".jpg";
 		var deleteImageId = $(obj).prev().attr('id');
+		var filename = deleteImageId + ".jpg";
 		deleteImageFile(filename, deleteImageId);
 	}
 }
 
 $(function() {
-
+	
+	document.addEventListener('showkeyboard', function(e) {
+		setTimeout(function() {
+			alert(1);
+			e.target.activeElement.scrollIntoViewIfNeeded()
+		}, 500)
+	}, false);
+	
 	$('#imagePage').on('pageshow', function() {
 		var horse = localStorage.getItem('horseName');
 		if (horse.trim().length > 0) {
@@ -99,7 +106,7 @@ function onPhotoDataSuccess(imageData) {
 }
 
 function onFail(message) {
-	alert('Failed to load picture because: ' + message);
+	alert('Impossible de charger l\'image, car: ' + message);
 }
 
 function b64toBlob(b64Data, contentType, sliceSize) {
@@ -145,11 +152,10 @@ function savebase64AsImageFile(folderpath, filename, content, contentType) {
 				}, function(file) {
 					console.log("File created succesfully.");
 					file.createWriter(function(fileWriter) {
-						console.log("Writing content to file path: "
-								+ folderpath);
+						console.log("Writing content to file path: " + folderpath);
 						fileWriter.write(DataBlob);
 					}, function() {
-						alert('Unable to save file in path ' + folderpath);
+						alert('Impossible d\'enregistrer le fichier dans le chemin ' + folderpath);
 					});
 				});
 			}, function(e) {
@@ -181,9 +187,9 @@ function deleteImageFile(fileName, photoId) {
 						$('#' + photoId).attr("width","");
 						$('#' + photoId).next().css("display", "none");
 					}, function() {
-						alert("Delete Errro " + error.code);
+						alert("Supprimer l\'erreur " + error.code);
 					}, function() {
-						alert("File doesn't exists");
+						alert("Le fichier n'existe pas");
 					});
 				});
 			}, function(e) {
