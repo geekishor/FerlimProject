@@ -204,6 +204,31 @@ module.exports = [
             "cordova"
         ],
         "runs": true
+    },
+    {
+        "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+        "pluginId": "ionic-plugin-keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification_android",
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -212,7 +237,9 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.0",
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-camera": "2.3.0",
-    "cordova-plugin-file": "4.3.0"
+    "cordova-plugin-file": "4.3.0",
+    "ionic-plugin-keyboard": "2.2.1",
+    "cordova-plugin-dialogs": "1.3.1"
 };
 // BOTTOM OF METADATA
 });

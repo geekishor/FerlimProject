@@ -1,11 +1,9 @@
 ﻿.globalComment{
 	height: 80px !important;
 }
-
 #content {
 	background-color: #e9e9e9 !important;
 }
-
 hr {
 	background: cadetblue;
 }
@@ -17,31 +15,25 @@ hr {
 	font-size:22px !important;
 	text-align:center;
 }
-
-#legt_buttons {
+#legt_buttons{
 	table-layout: fixed
 }
-
 [src=''] {
     visibility: hidden;
 }
-
-#legt_buttons img {
+#legt_buttons img{
 	height:12px;
 	width:12px;
 	margin-right:5px;
 	vertical-align: text-top;
 }
-
 .photoBlocks img{
 	display:block;
 	margin:0 auto;
 }
-
 .ui-listview > .ui-li-has-thumb > .ui-btn, .ui-listview > .ui-li-static.ui-li-has-thumb {
 	padding: 13px;
 }
-
 @font-face {
     font-family: 'helvetica'; /*a name to be used later*/
     src: url('font/HelveticaNeue-Thin.ttf'); /*URL to font*/
@@ -292,11 +284,11 @@ a.dropDownButton:active, .ui-select>.ui-btn:active{
     background-color: white;
 }
 /*header with icons*/
-.headermenu {	
+.headermenu {
     width: 100%;
     background-color: #993300 !important;
     box-shadow: 0px 2px 2px grey;
-    border-bottom: 0px !important;    
+    border-bottom: 0px !important;
     color: white;
 }
 
@@ -436,8 +428,6 @@ body.loading {
 body.loading .modal {
     display: block;
 }
-
-
 
 /* #textView, #dropDownView {
     display: none;
@@ -721,11 +711,11 @@ span.spancontrolLabelEN{
 }
 
 .wrongImg{
-	position: absolute;
-	width: 17px;
-	height: 17px;
-	top: 2px;
-  	right: 0px;
+	margin-top: 15px !important;
+	/* position: absolute; */
+    width: 24px;
+    height: 24px;
+    right: 19px;
 }
 .videoDialogCloseButton{
 	position: absolute;
@@ -1369,6 +1359,8 @@ input, textarea{
 	padding-top: 4px !important;
 	margin-top: 0px !important;
 } 
+
+
 
 .transFormClass {
     width: 100%;
@@ -3112,7 +3104,6 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
 .loginBody #header.ui-header {
 	margin:15px 0px 13px 0px !important;
 }
-
 .controlButton > span {
 	color: black !important;
 	font-size: 14px;
@@ -3190,7 +3181,6 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
 .filterFooter{
 	margin-top: 10px !important;
 }
-
 @media screen and (max-device-width : 480px), (max-device-width : 1204px)
 {
     body
@@ -3202,7 +3192,7 @@ li.whiteText.ui-li-divider.ui-bar-inherit.ui-first-child{
     }
     #loadingText{
         font-size: 10px;
-    }
+}
     .attachmentindextext,.menuIconDiv a p,.block p{
         font-size: 12px;
     }

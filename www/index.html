@@ -1,70 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src  'self' data: *;">
-    <meta name="format-detection" content="telephone=no" />
-   <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-	-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
- 
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquerymobile.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquerymobile.nativedroid.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquerymobile.nativedroid.light.css" id='jQMnDTheme' />
-    <link rel="stylesheet" type="text/css" href="css/jquerymobile.nativedroid.color.yellow.css" id='jQMnDColor' />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-	
-	<script type="text/javascript" src="js/external/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="js/external/jquerymobile.min.js"></script>
-    <script type="text/javascript" src="js/external/cordovaLib.js"></script>
-    <script type="text/javascript" src="js/external/jquery.base64.js"></script>
-    <script type="text/javascript" src="ferlimJs/index.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Security-Policy"
+	content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src  'self' data: *;">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
 
- 
-    <title>Ferlim</title>	
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="css/jquerymobile.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/jquerymobile.nativedroid.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/jquerymobile.nativedroid.light.css" id='jQMnDTheme' />
+<link rel="stylesheet" type="text/css"
+	href="css/jquerymobile.nativedroid.color.yellow.css" id='jQMnDColor' />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+<script type="text/javascript" src="js/external/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/external/jquerymobile.min.js"></script>
+<script type="text/javascript" src="js/external/cordovaLib.js"></script>
+<script type="text/javascript" src="js/external/jquery.base64.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/imagePage.js"></script>
+<script type="text/javascript" src="js/detailPage.js"></script>
+<script type="text/javascript" src="js/httpService.js"></script>
+<script type="text/javascript" src="js/signUp.js"></script>
+
+
+<title>Ferlim</title>
 </head>
-<body ondragstart="return false;" ondrop="return false;" class="loginBody">
-    <div id="page" data-role="page" data-theme='b' class="heightAutoPage">
-       
-        <div class="headermenu" data-role="header" data-position="absolute" data-tap-toggle="false" data-theme='b'>
-             <h3 style="display: inline-block;margin-left: 10px !important;">Se Connecter</h3>
-        </div>
-        <div id="header" data-role="header" data-position="absolute" data-tap-toggle="false" data-theme='b'>
-            <img src="images/horseLogo.jpg" id="imgDomain" />
-        </div>
-        <div id="content" data-role="content" data-theme='b'>
-            <form action="#">
-                <ul data-role="listview" data-inset="true" id="loginUL">
-                    <li data-role="fieldcontain" id="textView">
-                        <label for="txtUserName"><span class="translateClass lableClass">Nom d’utilisateur</span></label>
-                        <input type="text" name="txtUserName" id="txtUserName" value="" data-clear-btn="false" placeholder="Entrez votre nom d’utilisateur...">
-                    </li>
-                    <li data-role="fieldcontain">
-                        <label for="txtPassword"><span class="translateClass lableClass">Mot de passe</span></label>
-                        <input type="password" name="txtPassword" id="txtPassword" value="" data-clear-btn="false" placeholder="Entrez votre mot de passe...">
-                    </li>
-                     <li>
-                        <button id = "loginButton" type="button" data-theme="b" onclick="indexObject.authenticate();" class="translateClass blueButton">Identifiez-vous</button>
-                    </li>
-                </ul>
-            </form>
-        </div>
-        
-        <div class="modal">
+<body ondragstart="return false;" ondrop="return false;"
+	class="loginBody">
+	<div id="page" data-role="page" data-theme='b' class="heightAutoPage">
+		<div class="headermenu" data-role="header" data-position="absolute"
+			data-tap-toggle="false" data-theme='b'>
+			<h3 style="display: inline-block; margin-left: 10px !important;">Se
+				Connecter</h3>
+
+		</div>
+		<div id="header" data-role="header" data-position="absolute"
+			data-tap-toggle="false" data-theme='b'>
+			<img src="images/horseLogo.jpg" id="imgDomain" />
+		</div>
+		<div id="content" data-role="content" data-theme='b'>
+			<form action="#">
+				<ul data-role="listview" data-inset="true" id="loginUL">
+					<li data-role="fieldcontain" id="textView"><label
+						for="txtUserName"><span class="translateClass lableClass">Nom
+								d’utilisateur</span></label> <input type="text" name="txtUserName"
+						id="txtUserName" value="" data-clear-btn="false"
+						placeholder="Entrez votre nom d’utilisateur..."></li>
+					<li data-role="fieldcontain"><label for="txtPassword"><span
+							class="translateClass lableClass">Mot de passe</span></label> <input
+						type="password" name="txtPassword" id="txtPassword" value=""
+						data-clear-btn="false" placeholder="Entrez votre mot de passe...">
+					</li>
+					<li>
+						<button id="loginButton" type="button" data-theme="b" onclick="indexObject.validate();" class="translateClass blueButton">Identifiez-vous</button>
+						<button id="signUpButton" type="button" data-theme="b" 	onclick="indexObject.signUp();" class="translateClass blueButton">Créer un nouveau compte</button>
+					</li>
+				</ul>
+			</form>
+		</div>
+		
+
+		<div class="modal">
 			<div class="modalWrapper">
 				<div class="loadingDiv">
-					<span>
-						<img src="images/loading.gif"/>
-					</span>
+					<span> <img src="images/loading.gif" /></span> 
 					<span id="loadingText"></span>
 				</div>
 			</div>
 		</div>
-    </div>
-    
-    
-     <div id="detailPage" data-role="page" data-theme='b' class="heightAutoPage" > 
+	</div>
+	<div id="signUpPage" data-role="page" data-theme='b'
+		class="heightAutoPage">
+		<div class="headermenu" data-role="header" data-position="absolute"
+			data-tap-toggle="false" data-theme='b'>
+			<h3 style="display: inline-block; margin-left: 10px !important;">Créer un nouveau compte</h3>
+
+		</div>
+		<div id="header" data-role="header" data-position="absolute"
+			data-tap-toggle="false" data-theme='b'>
+			<img src="images/horseLogo.jpg" id="imgDomain" />
+		</div>
+		<div id="content" data-role="content" data-theme='b'>
+			<form action="#">
+				<ul data-role="listview" data-inset="true" id="loginUL">
+					<li data-role="fieldcontain" id="textView"><label
+						for="txtUserName"><span class="translateClass lableClass">First
+								Name</span></label> <input type="text" name="txtFirstName" id="txtFirstName"
+						value="" data-clear-btn="false"
+						placeholder="Entrez votre nom d’utilisateur..."></li>
+					<li data-role="fieldcontain"><label for="txtPassword"><span
+							class="translateClass lableClass">Last Name</span></label> <input
+						type="text" name="txtLastName" id="txtLastName" value=""
+						data-clear-btn="false" placeholder="Entrez votre mot de passe...">
+					</li>
+					<li data-role="fieldcontain"><label for="txtPassword"><span
+							class="translateClass lableClass">Email</span></label> <input
+						type="email" name="txtEmail" id="txtEmail" value=""
+						data-clear-btn="false" placeholder="Entrez votre mot de passe...">
+					</li>
+					<li data-role="fieldcontain"><label for="txtPassword"><span
+							class="translateClass lableClass">Password</span></label> <input
+						type="password" name="txtPassword" id="txtPasswordSignUp" value=""
+						data-clear-btn="false" placeholder="Entrez votre mot de passe...">
+					</li>
+					<li data-role="fieldcontain"><label for="txtPassword"><span
+							class="translateClass lableClass">Phone</span></label> <input
+						type="tel" name="txtPassword" id="txtPhone" value=""
+						data-clear-btn="false" placeholder="Entrez votre mot de passe...">
+					</li>
+					<li>
+						<button id="signUpAuthenticate" type="button" data-theme="b"
+							onclick="signUpObject.signUpAuthenticate();"
+							class="translateClass blueButton">Register</button>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>	
+	<div id="detailPage" data-role="page" data-theme='b' class="heightAutoPage" > 
         <div data-role="header" data-theme='b' class="headermenu" data-position="absolute" data-tap-toggle="false" >        
         <div class="leftBtn cancelButton" onclick="">
             <a href="index.html" ><img src="images/back.png" /></a>
@@ -76,7 +134,7 @@
             
                 <ul data-role="listview" data-inset="true" id="loginUL">
                     <li data-role="fieldcontain" >
-                        <label><span class="lableClass">Entrer le nom du cheval</span></label>
+                        <label style="width:100%"><span class="lableClass">Entrer le nom du cheval</span></label>
                         <input type="text" name="horse_name" id="horseName" value="" data-clear-btn="false" placeholder="" />
                     </li>
                     <li data-role="fieldcontain" >
@@ -94,34 +152,18 @@
                         </table>
                     </li>
                     <li>
-                        <button id="Btn_next" data-theme="b" onclick="indexObject.goToAddImage()" class="blueButton">Valider</button>                        
+                        <button id="Btn_next" data-theme="b" onclick="detailPageObject.goToAddImage()" class="blueButton" type="button">Valider</button>                        
                     </li>
                 </ul>
             
         </div>
-      </div>   
-    <!--   <div id="addImage" data-role="page" data-theme='b' class="heightAutoPage" > 
-        <div data-role="header" data-theme='b' class="headermenu" data-position="absolute" data-tap-toggle="false" >        
-        <div class="leftBtn cancelButton" onclick="">
-            <a href="index.html" ><img src="images/back.png" /></a>
-        </div>     
-        <h3 style="display: inline-block;margin-left: 0px !important;">Add Image</h3>              
-	    </div>
-             
-        <div id="content" data-role="content" data-theme='b' >
-            
-                <button id="addFromCamera" >Camera</button>
-                <button id="addFromGallery" >Gallery</button>
-                
-                <img id="smallImage" style="width:400px; height:400px;"></img>
-        </div>
-      </div> -->
-      
-      <div id="imagePage" data-role="page" data-theme='b' class="heightAutoPage">
+      </div> 
+
+	<div id="imagePage" data-role="page" data-theme='b' class="heightAutoPage">
 		<div data-role="header" data-theme='b' class="headermenu"
 			data-position="absolute" data-tap-toggle="false">
 			<div class="leftBtn cancelButton" onclick="">
-				<img src="images/back.png" onclick="$.mobile.changePage($('#detailPage'));"/>
+				<img src="images/back.png" onclick="$.mobile.changePage($('#detailPage'),{transition: 'fade'});"/>
 			</div>
 			<h3 style="display: inline-block; margin-left: 0px !important;">Ajouter les photos</h3>
 		</div>
@@ -136,7 +178,8 @@
 							<tr>
 								<td>
 									<div class="photoBlocks" >
-										<img id="photoOne" src="images/camera.png" onclick="indexObject.showPopUp(this)" />
+										<img id="photoOne" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div> 
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentOne" ></textarea>
@@ -146,7 +189,8 @@
 							<tr>
 								<td>
 									<div class="photoBlocks" >
-										<img id="photoTwo" src="images/camera.png" onclick="indexObject.showPopUp(this)" />
+										<img id="photoTwo" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentTwo" ></textarea>
@@ -154,7 +198,8 @@
 							</tr>
 							<tr>
 								<td><div class="photoBlocks" >
-										<img id="photoThree" src="images/camera.png" onclick="indexObject.showPopUp(this)" />
+										<img id="photoThree" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentThree" ></textarea>
@@ -162,48 +207,52 @@
 							</tr>
 							<tr>
 								<td><div class="photoBlocks" >
-										<img id="photoFour" src="images/camera.png" onclick="indexObject.showPopUp(this)" />
+										<img id="photoFour" src="images/images.png" onclick="imagePageObject.showPopUp(this)" />
+										<img class = "wrongImg" src='images/delete.png' style="display:none" onclick='imagePageObject.deleteImage(this)'/>
 									</div>
 									<hr />
 									<textarea placeholder="Commentaire..." id="photoCommentFour" ></textarea>
 									</td>
 							</tr>
+							
 							<tr>
 							<td>
 							<br />
 							<br />
-							<textarea placeholder="Commentaire global..." id="globalComment" ></textarea></td>
+							<textarea data-role="none" style="min-height:100px !important;width:99%;" placeholder="Commentaire global..." id="globalComment" ></textarea></td>
 							</tr>
 						</table></li>
 						
 					<li>
-						<button id="submitButton" data-theme="b"
+						<button id="submitButton" data-theme="b" type="button"
 							onclick="" class="blueButton">Valider</button>
 					</li>
 				</ul>
 			
 		</div>
 
-		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all popupDialog" style="width:300px;">
-			             
+		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all popupDialog" style="width:300px;">           
 			<div style="padding: 10px 20px;">
 				            
-				<div onclick="indexObject.openCamera();">
+				<div onclick="imagePageObject.openCamera();">
 					<img src="images/camera.png" style="vertical-align:middle" />
 					<span>Open Camera</span>
 				</div>
 				
-				<div onclick="indexObject.openGallery();">
+				<div onclick="imagePageObject.openGallery();">
 					<img src="images/gallery.png" style="vertical-align:middle" />
 					<span>Choose from Gallery</span>
-				</div>           
-				
-				<button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="indexObject.closePopUp()">Close</button>
-				        
+				</div>
+				<button type="button" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="imagePageObject.closePopUp()">Close</button>     
 			</div>
-
 		</div>
 	</div>
-            
+	
+	
+	<script type="text/javascript">
+		indexObject.initialize();
+	</script>
+	
+	
 </body>
 </html>
