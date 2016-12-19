@@ -13,7 +13,7 @@ var imagePageObject = {
 
 		if (isSelected.length > 0) {
 			$.mobile.changePage("#addImage", {
-				transition : "fade"
+				transition : "none"
 			});
 		} else {
 			alert('Veuillez sélectionner au moins une option.');

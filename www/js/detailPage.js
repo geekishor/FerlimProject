@@ -14,7 +14,7 @@ var detailPageObject = {
 				$('#horseName').blur();
 				setTimeout(function(){
 					$.mobile.changePage("#imagePage", {
-						transition : "fade"
+						transition : "none"
 					});
 				},500);			
 			
@@ -51,13 +51,13 @@ $(function() {
 $(document).on("pageshow",function(){
 	
     var screen = $.mobile.getScreenHeight();
-	var content = screen - 53;
+	var content = screen - 50;
 	
 	if($(".ui-page-active").attr("id") == 'page'){
 		content = screen - 50  - $('#header').outerHeight() - 30;
 	}
 
-	$(".ui-content").height(content + 'px');
+	$(".ui-content").css('height', content + 'px');
 	
 	hideLoading();
 });

@@ -48,7 +48,7 @@ var indexObject = {
 		httpServiceObj.post(data,'customer.php', function(result) {			
 			if(result.response == "success") {
 				$.mobile.changePage("#detailPage", {
-					transition : "fade"
+					transition : "none"
 				});
 			}else{				
 				alert("Invalid username or password.");
@@ -62,7 +62,7 @@ var indexObject = {
 	
 	signUp: function(){
     	$.mobile.changePage("#signUpPage",{
-    		transition: "fade"
+    		transition: "none"
     	})
     }      
         
