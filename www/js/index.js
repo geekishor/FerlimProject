@@ -1,14 +1,11 @@
 var indexObject = {
-	// Application Constructor
 	initialize : function() {
 		document.addEventListener('deviceready', this.onDeviceReady.bind(this),
 				false);
 	},
 
 	onDeviceReady : function() {
-		userName = "";
-		password = "";
-
+		document.addEventListener("backbutton", onBackKeyPress, false);
 		window.addEventListener('native.keyboardshow', function(e) {
 			setTimeout(function() {
 				document.activeElement.scrollIntoViewIfNeeded();
@@ -28,29 +25,27 @@ var indexObject = {
 			alert("Veuillez saisir un mot de passe.");
 			return;
 		}
-		
-		/*
-		 * setLocalStorage("userName", userName);
-		 * setLocalStorage("password", password);
-		*/
-		
-		indexObject.authenticate(username,password);
+
+		indexObject.authenticate(username, password);
 	},
 
-	authenticate : function(username,password) {
+	authenticate : function(username, password) {
+		$('.addCheck img').attr('src', '');
+		localStorage.clear();
 		showLoading('Authenticating...');
 		var data = {
 			action : "login",
-			email: username,
-			password: password
+			email : username,
+			password : password
 		};
-				
-		httpServiceObj.post(data,'customer.php', function(result) {			
-			if(result.response == "success") {
+
+		httpServiceObj.post(data, 'customer.php', function(result) {
+			if (result.response == "success") {
+				indexObject.saveLoginInfo(result.data);
 				$.mobile.changePage("#detailPage", {
 					transition : "none"
 				});
-			}else{				
+			} else {
 				alert("Invalid username or password.");
 				hideLoading();
 			}
@@ -59,24 +54,23 @@ var indexObject = {
 			console.log(e);
 		});
 	},
+
+	saveLoginInfo : function(info) {
+		localStorage.setItem('$userId', info.id);
+		localStorage.setItem('$token', info.session_token);
+	},
+
+	signUp : function() {
+		$.mobile.changePage("#signUpPage", {
+			transition : "none"
+		})
+	},
 	
-	signUp: function(){
-    	$.mobile.changePage("#signUpPage",{
-    		transition: "none"
-    	})
-    }      
-        
+	appExit : function(){
+		var rs = confirm("Are you sure you want to exit ?");
+		if (rs == true) {
+			navigator.app.exitApp();
+		}
+	}
 };
 
-function showLoading(text){
-	$('.modal').css('display','block');
-	if(text){
-		$('#loadingText').text(text);
-	}else{
-		$('#loadingText').text('Loading...');
-	}
-}
-
-function hideLoading(){
-	$('.modal').css('display','none');
-}

@@ -1,4 +1,19 @@
-﻿.globalComment{
+﻿#horseNameBlock a{
+	background-color:black !important;
+}
+
+#signUpButton{
+	background-color: #3B5998 !important;
+}
+
+#logoutBtn{
+	margin-top: 12px;
+    margin-left: 15px;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.globalComment{
 	height: 80px !important;
 }
 #content {

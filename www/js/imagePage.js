@@ -1,24 +1,5 @@
 var imagePageObject = {
-	
 	imageSource : '',
-
-	goToAddImage : function() {
-		var isSelected = localStorage.getItem("legSelected");
-		var horseName = $('#horseName').val();
-
-		if (horseName.trim().length <= 0) {
-			alert('Veuillez indiquer le nom du cheval.');
-			return;
-		}
-
-		if (isSelected.length > 0) {
-			$.mobile.changePage("#addImage", {
-				transition : "none"
-			});
-		} else {
-			alert('Veuillez sélectionner au moins une option.');
-		}
-	},
 
 	openCamera : function() {
 		$("#popupLogin").popup("close");
@@ -30,7 +11,7 @@ var imagePageObject = {
 	openGallery : function() {
 		$("#popupLogin").popup("close");
 		var destinationType = navigator.camera.DestinationType;
-		;
+		
 		navigator.camera.getPicture(onPhotoDataSuccess, function(error) {
 			alert(error);
 		}, {
@@ -51,41 +32,133 @@ var imagePageObject = {
 	},
 
 	deleteImage : function(obj) {
-		var deleteImageId = $(obj).prev().attr('id');
-		var filename = deleteImageId + ".jpg";
-		deleteImageFile(filename, deleteImageId);
+		var rs = confirm("Are you sure you want to remove image?");
+		if (rs == true) {
+			var deleteImageId = $(obj).prev().attr('id');
+			var filename = deleteImageId + ".jpg";
+			deleteImageFile(filename, deleteImageId);
+		}
+
+	},
+
+	submitForm : function() {
+		var rs = confirm("Are you sure you want to submit?");
+		if (rs == true) {
+			var formData = {};
+			
+			
+			formData.photoOne = $('#photoOne').attr('src');
+			formData.photoTwo = $('#photoTwo').attr('src');
+			formData.photoThree = $('#photoThree').attr('src');
+			formData.photoFour = $('#photoFour').attr('src');
+			
+			formData.photoOne = (formData.photoOne == 'images/images.png') ? '' : formData.photoOne;
+			formData.photoTwo = (formData.photoTwo == 'images/images.png') ? '' : formData.photoTwo;
+			formData.photoThree = (formData.photoThree == 'images/images.png') ? '' : formData.photoThree;
+			formData.photoFour = (formData.photoFour == 'images/images.png') ? '' : formData.photoFour;
+
+			formData.photoCommentOne = $('#photoCommentOne').val();
+			formData.photoCommentTwo = $('#photoCommentTwo').val();
+			formData.photoCommentThree = $('#photoCommentThree').val();
+			formData.photoCommentFour = $('#photoCommentFour').val();
+
+			formData.globalComment = $('#globalComment').val();
+
+			var count = 0;
+			for (var property in formData) {
+			    if (formData.hasOwnProperty(property)) {
+			    	 if(formData[property].length > 0){
+			    		 count++;
+			    	 }
+			    }
+			}
+			if(count > 0){
+				imagePageObject.pushHorseFormData(formData);
+			}else{
+				alert('Please fill at least one field.');
+			}
+			
+		}
+	},
+
+	pushHorseFormData : function(formData) {
+		showLoading('Submitting...');
+		
+		var data = {
+			action : "create",
+			name : localStorage.getItem('$horseName'),
+			idcustomer : localStorage.getItem('$userId'), 
+			session_token :localStorage.getItem('$token')
+		};
+		var currentHorseName = localStorage.getItem('$horseName');
+		var oldHorseName = localStorage.getItem('$oldHorseName');
+		if( currentHorseName != oldHorseName ){
+			httpServiceObj.post(data, 'horse.php', function(result) {
+				if (result.response == "success") {
+					localStorage.setItem('$horseId', result.data.id);
+					imagePageObject.pushFormData(formData);
+				} else {
+					alert("Error occured.");
+					hideLoading();
+				}
+			}, function(e) {
+				hideLoading();
+				console.log(e);
+			});
+		}else{
+			imagePageObject.pushFormData(formData);
+		}
+
+	},
+	pushFormData : function(formData) {
+		var data = {
+			action : "create",
+			name : commonObj.$selectedLeg,
+			idhorse : localStorage.getItem('$horseId'),
+			idcustomer : localStorage.getItem('$userId'),			
+			photo1 : formData.photoOne,
+			photo2 : formData.photoTwo,
+			photo3 : formData.photoThree,
+			photo4 : formData.photoFour,
+			commentaire1 : formData.photoCommentOne,
+			commentaire2 : formData.photoCommentTwo,
+			commentaire3 : formData.photoCommentThree,
+			commentaire4 : formData.photoCommentFour,
+			commentaire_global : formData.globalComment,
+			session_token : localStorage.getItem('$token')
+		};
+		
+		httpServiceObj.post(data, 'paw.php', function(result) {
+			if (result.response == "success") {				
+				alert("Demande bien envoyée.");			
+				var horseName = localStorage.getItem('$horseName');
+				localStorage.setItem('$oldHorseName',horseName);
+				$.mobile.changePage("#detailPage", {
+					transition : "none"					
+				});					
+				location.reload();
+			} else {
+				alert("Error occured while saving form.");
+				hideLoading();
+			}
+		}, function(e) {
+			hideLoading();
+			console.log(e);
+		});
 	}
+
 }
 
 $(function() {
-	
-	document.addEventListener('showkeyboard', function(e) {
-		setTimeout(function() {
-			alert(1);
-			e.target.activeElement.scrollIntoViewIfNeeded()
-		}, 500)
-	}, false);
-	
 	$('#imagePage').on('pageshow', function() {
-		var horse = localStorage.getItem('horseName');
+	    
+		var horse = localStorage.getItem('$horseName');
 		if (horse.trim().length > 0) {
 			$('#label-horse').text(horse);
 		}
-		$('#globalComment').css('width', '80px !important');
+		
+		
 	});
-});
-
-$(document).on("pageshow", function() {
-
-	var screen = $.mobile.getScreenHeight();
-	var content = screen - 53;
-
-	if ($(".ui-page-active").attr("id") == 'page') {
-		content = screen - 50 - $('#header').outerHeight() - 30;
-	}
-
-	$(".ui-content").height(content + 'px');
-
 });
 
 function onPhotoDataSuccess(imageData) {
@@ -139,39 +212,61 @@ function savebase64AsImageFile(folderpath, filename, content, contentType) {
 	// Convert the base64 string in a Blob
 	var DataBlob = b64toBlob(content, contentType);
 	console.log("Starting to write the file :3");
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(dir) {
-		console.log("Access to the directory granted succesfully");
-		dir.root.getDirectory('Ferlim', {
-			create : true
-		}, function(dirEntry) {
-			dirEntry.getDirectory('Photos', {
-				create : true
-			}, function(subDir) {
-				subDir.getFile(filename, {
-					create : true
-				}, function(file) {
-					console.log("File created succesfully.");
-					file.createWriter(function(fileWriter) {
-						console.log("Writing content to file path: " + folderpath);
-						fileWriter.write(DataBlob);
-					}, function() {
-						alert('Impossible d\'enregistrer le fichier dans le chemin ' + folderpath);
+	window.requestFileSystem(LocalFileSystem.PERSISTENT,0,function(dir) {console
+								.log("Access to the directory granted succesfully");
+						dir.root
+								.getDirectory(
+										'Ferlim',
+										{
+											create : true
+										},
+										function(dirEntry) {
+											dirEntry
+													.getDirectory(
+															'Photos',
+															{
+																create : true
+															},
+															function(subDir) {
+																subDir
+																		.getFile(
+																				filename,
+																				{
+																					create : true
+																				},
+																				function(
+																						file) {
+																					console
+																							.log("File created succesfully.");
+																					file
+																							.createWriter(
+																									function(
+																											fileWriter) {
+																										console
+																												.log("Writing content to file path: "
+																														+ folderpath);
+																										fileWriter
+																												.write(DataBlob);
+																									},
+																									function() {
+																										alert('Impossible d\'enregistrer le fichier dans le chemin '
+																												+ folderpath);
+																									});
+																				});
+															}, function(e) {
+																alert(e);
+															});
+										}, function(e) {
+											alert(e);
+										});
+					}, function(e) {
+						alert(e);
 					});
-				});
-			}, function(e) {
-				alert(e);
-			});
-		}, function(e) {
-			alert(e);
-		});
-	}, function(e) {
-		alert(e);
-	});
 
 }
 
 function deleteImageFile(fileName, photoId) {
-	window.requestFileSystem(LocalFileSystem.PERSISTENT,0, function(dir) {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(dir) {
 		dir.root.getDirectory('Ferlim', {
 			create : true
 		}, function(dirEntry) {
@@ -182,9 +277,9 @@ function deleteImageFile(fileName, photoId) {
 					create : false
 				}, function(fileEntry) {
 					fileEntry.remove(function(file) {
-						$('#' + photoId).attr("src","images/images.png");
-						$('#' + photoId).attr("height","");
-						$('#' + photoId).attr("width","");
+						$('#' + photoId).attr("src", "images/images.png");
+						$('#' + photoId).attr("height", "");
+						$('#' + photoId).attr("width", "");
 						$('#' + photoId).next().css("display", "none");
 					}, function() {
 						alert("Supprimer l\'erreur " + error.code);
@@ -202,13 +297,3 @@ function deleteImageFile(fileName, photoId) {
 	});
 
 }
-
-/*
- * window.resolveLocalFileSystemURL(folderpath, function(dir) {
- * console.log("Access to the directory granted succesfully" );
- * dir.getFile(filename, {create:true}, function(file) { console.log("File
- * created succesfully."); file.createWriter(function(fileWriter) {
- * console.log("Writing content to file path: "+ folderpath);
- * fileWriter.write(DataBlob); }, function(){ alert('Unable to save file in path '+
- * folderpath); }); }); });
- */

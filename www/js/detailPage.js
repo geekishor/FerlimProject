@@ -1,63 +1,78 @@
 var detailPageObject = {
-		goToAddImage : function() {		
-			var isSelected = localStorage.getItem("legSelected");
-			var horseName = $('#horseName').val();
-			
-			if (horseName.trim().length <= 0) {
-				alert('Veuillez indiquer le nom du cheval.');
-				return;
-			}else{
-				localStorage.setItem('horseName',horseName);
-			}			
-				
-			if (isSelected.length > 0) {
-				$('#horseName').blur();
-				setTimeout(function(){
-					$.mobile.changePage("#imagePage", {
+	goToAddImage : function() {
+		var horseName = $('#horseName').val();
+		var isSelected = commonObj.$selectedLeg;
+		var userId = localStorage.getItem('$userId');
+		var token = localStorage.getItem('$token');
+
+		if (horseName.trim().length <= 0) {
+			alert('Veuillez indiquer le nom du cheval.');
+			return;
+		} else {
+			localStorage.setItem('$horseName', horseName);
+		}
+
+		if (isSelected.length > 0) {
+			$('#horseName').blur();
+			showLoading();
+
+			$.mobile.changePage("#imagePage", {
+				transition : "none",
+			});
+
+		} else {
+			alert('Veuillez sélectionner au moins une option.');
+		}
+	},
+
+	logout : function() {
+		var rs = confirm("Are you sure you want to logout?");
+		if (rs) {
+			showLoading('Logging out...');
+			var data = {
+				action : "logout",
+				id : localStorage.getItem('$userId'),
+				session_token : localStorage.getItem('$token')
+			};
+
+			httpServiceObj.post(data, 'customer.php', function(result) {
+				if (result.response == "success") {
+					localStorage.clear();
+					$("input").val('');
+					$.mobile.changePage("#page", {
 						transition : "none"
 					});
-				},500);			
-			
-			}else{
-				alert('Veuillez sélectionner au moins une option.');
-			}
+				} else {
+					alert("Error occured.");
+					hideLoading();
+				}
+			}, function(e) {
+				hideLoading();
+				console.log(e);
+			});
 		}
+	}
 }
 
-$(function() { 
+$(function() {
 
-	document.addEventListener('deviceready', function(){ }, false);
-	
-	localStorage.setItem("legSelected", "");
-	localStorage.setItem('horseName',"");
-  	$('.addCheck').click(function(){    		
-		var objId = $(this).attr('id'); 
-		$('.addCheck img').attr('src','');
-		$('#'+ objId +' img').attr('src','images/check_mark.png');
-		localStorage.setItem("legSelected", objId);
+	$('.addCheck').click(function() {
+		var objId = $(this).attr('id');
+		$('.addCheck img').attr('src', '');
+		$('#' + objId + ' img').attr('src', 'images/check_mark.png');
+		var legName = $(this).text().trim();
+		commonObj.$selectedLeg = legName;
 	});
-  	
-  	
-	$('#imagePage').on('pageshow',function(){
-		var horse = localStorage.getItem('horseName');
-		if(horse.trim().length > 0){
-			$('#label-horse').text(horse);
+		
+	$('#detailPage').on('pageshow',function(){
+		var horseName = localStorage.getItem('$horseName');		
+		if(horseName != ''){
+			setTimeout(function(){
+				$('#detailPage #horseName').val(horseName);
+			},200);
 		}
-		$('#globalComment').css('width', '80px !important');
 	});
 });
 
 
-$(document).on("pageshow",function(){
-	
-    var screen = $.mobile.getScreenHeight();
-	var content = screen - 50;
-	
-	if($(".ui-page-active").attr("id") == 'page'){
-		content = screen - 50  - $('#header').outerHeight() - 30;
-	}
 
-	$(".ui-content").css('height', content + 'px');
-	
-	hideLoading();
-});
