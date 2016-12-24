@@ -13,7 +13,7 @@ var imagePageObject = {
 		var destinationType = navigator.camera.DestinationType;
 		
 		navigator.camera.getPicture(onPhotoDataSuccess, function(error) {
-			alert(error);
+			console.log(error);
 		}, {
 			quality : 50,
 			destinationType : destinationType.DATA_URL,
@@ -32,7 +32,7 @@ var imagePageObject = {
 	},
 
 	deleteImage : function(obj) {
-		var rs = confirm("Are you sure you want to remove image?");
+		var rs = confirm("Etes-vous sûr que vous voulez supprimer?");
 		if (rs == true) {
 			var deleteImageId = $(obj).prev().attr('id');
 			var filename = deleteImageId + ".jpg";
@@ -42,7 +42,7 @@ var imagePageObject = {
 	},
 
 	submitForm : function() {
-		var rs = confirm("Are you sure you want to submit?");
+		var rs = confirm("Vous êtes sûr de vouloir envoyer?");
 		if (rs == true) {
 			var formData = {};
 			
@@ -75,7 +75,7 @@ var imagePageObject = {
 			if(count > 0){
 				imagePageObject.pushHorseFormData(formData);
 			}else{
-				alert('Please fill at least one field.');
+				alert('Veuillez remplir au moins une valeur.');
 			}
 			
 		}
@@ -90,6 +90,7 @@ var imagePageObject = {
 			idcustomer : localStorage.getItem('$userId'), 
 			session_token :localStorage.getItem('$token')
 		};
+		
 		var currentHorseName = localStorage.getItem('$horseName');
 		var oldHorseName = localStorage.getItem('$oldHorseName');
 		if( currentHorseName != oldHorseName ){
@@ -98,7 +99,7 @@ var imagePageObject = {
 					localStorage.setItem('$horseId', result.data.id);
 					imagePageObject.pushFormData(formData);
 				} else {
-					alert("Error occured.");
+					alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
 					hideLoading();
 				}
 			}, function(e) {
@@ -138,7 +139,7 @@ var imagePageObject = {
 				});					
 				location.reload();
 			} else {
-				alert("Error occured while saving form.");
+				alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
 				hideLoading();
 			}
 		}, function(e) {
@@ -179,7 +180,7 @@ function onPhotoDataSuccess(imageData) {
 }
 
 function onFail(message) {
-	alert('Impossible de charger l\'image, car: ' + message);
+	console.log(message);
 }
 
 function b64toBlob(b64Data, contentType, sliceSize) {
@@ -282,9 +283,9 @@ function deleteImageFile(fileName, photoId) {
 						$('#' + photoId).attr("width", "");
 						$('#' + photoId).next().css("display", "none");
 					}, function() {
-						alert("Supprimer l\'erreur " + error.code);
+						console.log("Supprimer l\'erreur " + error.code);
 					}, function() {
-						alert("Le fichier n'existe pas");
+						console.log("Le fichier n'existe pas");
 					});
 				});
 			}, function(e) {

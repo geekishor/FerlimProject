@@ -46,7 +46,7 @@ var indexObject = {
 					transition : "none"
 				});
 			} else {
-				alert("Invalid username or password.");
+				alert("Adresse email ou mot de passe incorrect.");
 				hideLoading();
 			}
 		}, function(e) {
@@ -67,7 +67,7 @@ var indexObject = {
 	},
 	
 	appExit : function(){
-		var rs = confirm("Are you sure you want to exit ?");
+		var rs = confirm("Êtes-vous sûr de vouloir quitter?");
 		if (rs == true) {
 			navigator.app.exitApp();
 		}

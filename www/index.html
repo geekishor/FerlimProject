@@ -39,9 +39,8 @@
             <form action="#">
                 <ul data-role="listview" data-inset="true" id="loginUL">
                     <li data-role="fieldcontain" id="textView">
-                        <label for="txtUserName"><span class="translateClass lableClass">Nom
-                     d’utilisateur</span></label>
-                        <input type="text" name="txtUserName" id="txtUserName" value="" data-clear-btn="false" placeholder="Entrez votre nom d’utilisateur...">
+                        <label for="txtUserName"><span class="translateClass lableClass">Adresse email</span></label>
+                        <input type="email" name="txtUserName" id="txtUserName" value="" data-clear-btn="false" placeholder="Entrez votre adresse email...">
                     </li>
                     <li data-role="fieldcontain">
                         <label for="txtPassword"><span class="translateClass lableClass">Mot de passe</span></label>
@@ -50,14 +49,17 @@
                     <li>
                         <button id="loginButton" type="button" data-theme="b" onclick="indexObject.validate();" class="translateClass blueButton">Identifiez-vous</button>
                         <button id="signUpButton" type="button" data-theme="b" onclick="indexObject.signUp();" class="translateClass blueButton">Créer un nouveau compte</button>
-                    </li>
+                     </li>
                 </ul>
             </form>
         </div>
     </div>
     <div id="signUpPage" data-role="page" data-theme='b' class="heightAutoPage">
         <div class="headermenu" data-role="header" data-position="absolute" data-tap-toggle="false" data-theme='b'>
-            <h3 style="display: inline-block; margin-left: 10px !important;">Créer un nouveau compte</h3>
+         	 <div class="leftBtn cancelButton"  onclick="signUpObject.backToLogin();" >
+                <img src="images/back.png" />
+            </div>
+            <h3 style="display: inline-block; margin-left: 0px !important;">Créer un nouveau compte</h3>
         </div>
         <div id="header" data-role="header" data-position="absolute" data-tap-toggle="false" data-theme='b'>
             <img src="images/horseLogo.jpg" id="imgDomain" />
@@ -110,22 +112,22 @@
                     <table style="width: 100%" id="legt_buttons">
                         <tr>
                             <td>
-                                <button id="btn_AD" data-theme="a" class="addCheck">
-                                    <img src="" />Patte AD</button>
-                            </td>
-                            <td>
                                 <button id="btn_AG" data-theme="a" class="addCheck">
                                     <img src="" />Patte AG</button>
+                            </td>
+                            <td>
+                                <button id="btn_AD" data-theme="a" class="addCheck">
+                                    <img src="" />Patte AD</button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button id="btn_PD" data-theme="a" class="addCheck">
-                                    <img src="" />Patte PD</button>
-                            </td>
-                            <td>
                                 <button id="btn_PG" data-theme="a" class="addCheck">
                                     <img src="" />Patte PG</button>
+                            </td>
+                            <td>
+                                <button id="btn_PD" data-theme="a" class="addCheck">
+                                    <img src="" />Patte PD</button>
                             </td>
                         </tr>
                     </table>

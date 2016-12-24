@@ -26,7 +26,7 @@ var detailPageObject = {
 	},
 
 	logout : function() {
-		var rs = confirm("Are you sure you want to logout?");
+		var rs = confirm("Vous êtes sûr de vouloir se déconnecter?");
 		if (rs) {
 			showLoading('Logging out...');
 			var data = {
@@ -43,7 +43,7 @@ var detailPageObject = {
 						transition : "none"
 					});
 				} else {
-					alert("Error occured.");
+					alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
 					hideLoading();
 				}
 			}, function(e) {

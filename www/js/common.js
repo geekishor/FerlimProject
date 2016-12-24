@@ -17,7 +17,7 @@ $(document).on("pageshow", function() {
 		$(".ui-content").css('height',content + 'px');
 
 		hideLoading();
-	},200);
+	},300);
 
 });
 

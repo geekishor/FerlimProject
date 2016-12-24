@@ -1,10 +1,10 @@
 var signUpObject = {
-	initSignUpForm : function(){
+	initSignUpForm : function() {
 		$("#signUpForm").trigger("reset");
-		$("#signUpForm").submit(function (e) {
-		    e.preventDefault();
-		    signUpObject.signUpAuthenticate();
-		    return false;
+		$("#signUpForm").submit(function(e) {
+			e.preventDefault();
+			signUpObject.signUpAuthenticate();
+			return false;
 		});
 	},
 	signUpAuthenticate : function() {
@@ -25,21 +25,25 @@ var signUpObject = {
 		};
 
 		httpServiceObj.post(data, 'customer.php', function(result) {
-			if(result.response == "success") {
+			if (result.response == "success") {
 				$("#signUpForm").trigger("reset");
-				alert("Registration complete.");
+				alert("Vous êtes inscrit avec succés.");
 				$.mobile.changePage("#page", {
 					transition : "none"
 				});
-			}else{				
-				alert("Error occured.");
+			} else {
+				alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
 				hideLoading();
 			}
 		}, function(error) {
-			alert(error);
+			console.log(error);
 		});
 
+	},
+
+	backToLogin : function() {
+		$.mobile.changePage("#page", {
+			transition : "none"
+		});
 	}
 }
-
-
