@@ -109,7 +109,7 @@
                <li data-role="fieldcontain" id="radioContainer">
      				<input type="radio" name="radio-choice" id="newHorse" value="New" checked="checked" />
      				<label for="newHorse">New horse</label>
-			
+					
 			     	<input type="radio" name="radio-choice" id="oldHorse" value="Old"  />
 			     	<label for="oldHorse">Old horse</label>
                </li>
@@ -118,12 +118,12 @@
                    <input type="text" name="horse_name" id="horseName"  value="" data-clear-btn="true"/>
                </li>
                <li data-role="fieldcontain" style="display:none;" id="selectHorse">
-                   <label><span class="lableClass">Select Horse</span></label>
-                   <select>
-                   		<option selected></option>
-                   		<option>A</option>
-                   		<option>B</option>
-                   		<option>C</option>
+                   <label style="width: 100%"><span class="lableClass">Select horse </span></label>
+                   <select id="selectHorseBox">
+                   		<option selected value="">Select Horse</option>
+                   		<option value="A">A</option>
+                   		<option value="B">B</option>
+                   		<option value="C">C</option>
                    </select>
                </li>
                <li>

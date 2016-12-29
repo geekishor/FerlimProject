@@ -250,18 +250,18 @@ function savebase64AsImageFile(folderpath, filename, content, contentType) {
 																												.write(DataBlob);
 																									},
 																									function() {
-																										alert('Impossible d\'enregistrer le fichier dans le chemin '
+																										console.log('Impossible d\'enregistrer le fichier dans le chemin '
 																												+ folderpath);
 																									});
 																				});
 															}, function(e) {
-																alert(e);
+																console.log(e);
 															});
 										}, function(e) {
-											alert(e);
+											console.log(e);
 										});
 					}, function(e) {
-						alert(e);
+						console.log(e);
 					});
 
 }

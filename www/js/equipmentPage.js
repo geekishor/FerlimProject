@@ -42,8 +42,31 @@ $(document).ready(function() {
     });
     
     $('#nextBtn').click(function(){
-    	$.mobile.changePage("#detailPage", {
-			transition : "none"
-		});
+    	var type = $('input:radio:checked').val();
+    	if(type == 'New'){
+    		var horseName = $('#horseName').val();
+    		if (horseName.trim().length <= 0) {
+    			alert('Veuillez indiquer le nom du cheval.');
+    			return;
+    		} else {
+    			localStorage.setItem('$horseName', horseName);
+    			$.mobile.changePage("#detailPage", {
+    				transition : "none"
+    			});
+    		}
+    	}else{
+    		var selectedHorse = $("#selectHorseBox").val();
+    		if(selectedHorse.trim().length <= 0){
+    			alert('Please select a horse.');
+    			return;
+    		}else{
+    			localStorage.setItem('$horseName', selectedHorse);
+    			$.mobile.changePage("#detailPage", {
+    				transition : "none"
+    			});
+    		}
+    	}
+    	
+    
     });
 });
