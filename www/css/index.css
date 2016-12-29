@@ -1,4 +1,9 @@
-﻿#horseNameBlock a{
+﻿#radioContainer label {
+	font-size: 20px;
+  	margin-left:-50px;
+}
+
+#horseNameBlock a{
 	background-color:black !important;
 }
 
@@ -2586,17 +2591,17 @@ html .ui-btn.ui-radio-off.ui-radio-off:before {
 	content: "\f10c";
   	color: #993300;
   	font-family: FontAwesome;
-  	margin-left: -33px;
   	margin-right: 7px;
   	float: left;
+  	margin-top: 2px;
 }
 html .ui-btn.ui-radio-on.ui-radio-on:before {
 	content: "\f05d";
   	color: #993300;
   	font-family: FontAwesome;
-  	margin-left: -33px;
   	margin-right: 7px;
   	float: left;
+  	margin-top: 2px;
 }
 
 .jq-calendar-wrapper[disabled=disabled] *{

@@ -17,11 +17,13 @@
     <script type="text/javascript" src="js/external/cordovaLib.js"></script>
     <script type="text/javascript" src="js/external/jquery.base64.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>   
+    <script type="text/javascript" src="js/equipmentPage.js"></script>
     <script type="text/javascript" src="js/imagePage.js"></script>
     <script type="text/javascript" src="js/detailPage.js"></script>
     <script type="text/javascript" src="js/httpService.js"></script>
     <script type="text/javascript" src="js/signUp.js"></script>
+    
     <title>Ferlim</title>
 </head>
 
@@ -94,19 +96,54 @@
             </form>
         </div>
     </div>
+    
+     <div id="equipmentPage" data-role="page" data-theme='b' class="heightAutoPage">
+        <div class="headermenu" data-role="header" data-position="absolute" data-tap-toggle="false" data-theme='b'>
+         	<div class="rightBtn cancelButton" onclick="equipmentPageObject.logout();">
+               <img src="images/Logout.png" id="logoutBtn" />
+            </div>
+            <h3 style="display: inline-block; margin-left: 10px !important;">Choose Horse</h3>
+        </div>
+        <div id="content" data-role="content" data-theme='b'>
+           <ul data-role="listview" data-inset="true" id="loginUL">
+               <li data-role="fieldcontain" id="radioContainer">
+     				<input type="radio" name="radio-choice" id="newHorse" value="New" checked="checked" />
+     				<label for="newHorse">New horse</label>
+			
+			     	<input type="radio" name="radio-choice" id="oldHorse" value="Old"  />
+			     	<label for="oldHorse">Old horse</label>
+               </li>
+               <li data-role="fieldcontain" id="horseNameBlock">
+                   <label style="width: 100%"><span class="lableClass">Entrer le nom du cheval</span></label>
+                   <input type="text" name="horse_name" id="horseName"  value="" data-clear-btn="true"/>
+               </li>
+               <li data-role="fieldcontain" style="display:none;" id="selectHorse">
+                   <label><span class="lableClass">Select Horse</span></label>
+                   <select>
+                   		<option selected></option>
+                   		<option>A</option>
+                   		<option>B</option>
+                   		<option>C</option>
+                   </select>
+               </li>
+               <li>
+                   <button id="nextBtn" type="submit" data-theme="b" class="translateClass blueButton">Next</button>
+               </li>
+           </ul>
+        </div>
+    </div>
+    
+    
+    
     <div id="detailPage" data-role="page" data-theme='b' class="heightAutoPage" data-cache="false">
         <div data-role="header" data-theme='b' class="headermenu" data-position="absolute" data-tap-toggle="false">
-            <div class="rightBtn cancelButton" onclick="detailPageObject.logout();">
-               <img src="images/Logout.png" id="logoutBtn" />
+            <div class="leftBtn cancelButton"  onclick="detailPageObject.backToEquipment();" >
+                <img src="images/back.png" />
             </div>
             <h3 style="display: inline-block; margin-left: 10px !important;">Cheval</h3>
         </div>
         <div id="content" data-role="content" data-theme='b'>
             <ul data-role="listview" data-inset="true" id="loginUL">
-                <li data-role="fieldcontain" id="horseNameBlock">
-                    <label style="width: 100%"><span class="lableClass">Entrer le nom du cheval</span></label>
-                    <input type="text" name="horse_name" id="horseName"  value="" data-clear-btn="true"/>
-                </li>
                 <li data-role="fieldcontain">
                     <label><span class="lableClass">Sélectionner les pattes à traiter </span></label>
                     <table style="width: 100%" id="legt_buttons">

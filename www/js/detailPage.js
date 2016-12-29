@@ -24,33 +24,10 @@ var detailPageObject = {
 			alert('Veuillez sélectionner au moins une option.');
 		}
 	},
-
-	logout : function() {
-		var rs = confirm("Vous êtes sûr de vouloir se déconnecter?");
-		if (rs) {
-			showLoading('Logging out...');
-			var data = {
-				action : "logout",
-				id : localStorage.getItem('$userId'),
-				session_token : localStorage.getItem('$token')
-			};
-
-			httpServiceObj.post(data, 'customer.php', function(result) {
-				if (result.response == "success") {
-					localStorage.clear();
-					$("input").val('');
-					$.mobile.changePage("#page", {
-						transition : "none"
-					});
-				} else {
-					alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
-					hideLoading();
-				}
-			}, function(e) {
-				hideLoading();
-				console.log(e);
-			});
-		}
+	backToEquipment: function(){
+		$.mobile.changePage("#equipmentPage", {
+			transition : "none"
+		});
 	}
 }
 

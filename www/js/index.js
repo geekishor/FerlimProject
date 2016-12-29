@@ -15,6 +15,9 @@ var indexObject = {
 	},
 
 	validate : function() {
+		$.mobile.changePage("#equipmentPage", {
+			transition : "none"
+		});
 		var username = $.trim($("#txtUserName").val().toLowerCase());
 		if (username == "") {
 			alert("Veuillez saisir un nom d'utilisateur.");
@@ -42,7 +45,7 @@ var indexObject = {
 		httpServiceObj.post(data, 'customer.php', function(result) {
 			if (result.response == "success") {
 				indexObject.saveLoginInfo(result.data);
-				$.mobile.changePage("#detailPage", {
+				$.mobile.changePage("#equipmentPage", {
 					transition : "none"
 				});
 			} else {
