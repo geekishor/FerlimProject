@@ -38,10 +38,9 @@ function onBackKeyPress() {
 
 	if ($(".ui-page-active").attr("id") == 'page') {
 		indexObject.appExit();
-	} else if ($(".ui-page-active").attr("id") == 'detailPage') {
-		detailPageObject.logout();
+	} else if ($(".ui-page-active").attr("id") == 'equipmentPage') {
+		equipmentPageObject.logout();
 	} else {
 		window.history.back();
 	}
-
 }
