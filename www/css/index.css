@@ -1602,7 +1602,7 @@ div[data-role=panel]{
 
 .ui-select {
     background:rgb(204, 204, 204) !important;
-    margin:4px 0px!important; 
+    margin:5px 0px!important; 
 }
 
 sketch, #sketch .ui-panel-wrapper {
