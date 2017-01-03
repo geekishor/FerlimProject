@@ -3,7 +3,7 @@ var equipmentPageObject = {
 	logout : function() {
 		var rs = confirm("Vous êtes sûr de vouloir se déconnecter?");
 		if (rs) {
-			showLoading('Logging out...');
+			showLoading('Déconnexion...');
 			var data = {
 				action : "logout",
 				id : localStorage.getItem('$userId'),
@@ -43,24 +43,28 @@ $(document).ready(function() {
     
     $('#nextBtn').click(function(){
     	var type = $('input:radio:checked').val();
-    	if(type == 'New'){
+    	if(type == 'New'){    		
     		var horseName = $('#horseName').val();
+    		
     		if (horseName.trim().length <= 0) {
     			alert('Veuillez indiquer le nom du cheval.');
     			return;
     		} else {
+    			localStorage.setItem('$horseId', '');
     			localStorage.setItem('$horseName', horseName);
     			$.mobile.changePage("#detailPage", {
     				transition : "none"
     			});
     		}
     	}else{
-    		var selectedHorse = $("#selectHorseBox").val();
-    		if(selectedHorse.trim().length <= 0){
-    			alert('Please select a horse.');
+    		var selectedHorseId = $("#selectHorseBox").val();
+    		var selectedHorseName = $("#selectHorseBox option:selected").text();
+    		if(selectedHorseId.trim().length <= 0){
+    			alert('Veuillez choisir un cheval.');
     			return;
     		}else{
-    			localStorage.setItem('$horseName', selectedHorse);
+    			localStorage.setItem('$horseName', selectedHorseName);
+    			localStorage.setItem('$horseId', selectedHorseId);
     			$.mobile.changePage("#detailPage", {
     				transition : "none"
     			});
@@ -69,4 +73,31 @@ $(document).ready(function() {
     	
     
     });
+    
+    
+    $('#equipmentPage').on('pagebeforeshow', function() {	    
+    	showLoading();
+		var data = {
+			action : "display",
+			idcustomer : localStorage.getItem('$userId'),
+			session_token : localStorage.getItem('$token')
+		};
+
+		httpServiceObj.post(data, 'horse.php', function(result) {
+			if (result.response == "success") {
+				var options = '';
+				for(r in result.data){
+					options += '<option value="'+result.data[r].id+'">'+ result.data[r].name + '</option>';
+				}	
+				$('#selectHorseBox').append(options);
+			} else {				
+				hideLoading();
+			}
+		}, function(e) {
+			hideLoading();
+			console.log(e);
+		});
+		
+		
+	});
 });

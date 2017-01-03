@@ -1,3 +1,10 @@
+#closeBtn {
+	text-shadow: none !important;
+	color: white !important;
+	background-color: #993300 !important;
+	
+}
+
 #radioContainer label {
 	font-size: 20px;
   	margin-left:-50px;

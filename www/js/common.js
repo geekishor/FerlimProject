@@ -26,7 +26,7 @@ function showLoading(text){
 	if(text){
 		$('#loadingText').text(text);
 	}else{
-		$('#loadingText').text('Loading...');
+		$('#loadingText').text('Chargement...');
 	}
 }
 

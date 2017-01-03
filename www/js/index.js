@@ -15,9 +15,7 @@ var indexObject = {
 	},
 
 	validate : function() {
-		$.mobile.changePage("#equipmentPage", {
-			transition : "none"
-		});
+	
 		var username = $.trim($("#txtUserName").val().toLowerCase());
 		if (username == "") {
 			alert("Veuillez saisir un nom d'utilisateur.");
@@ -35,7 +33,7 @@ var indexObject = {
 	authenticate : function(username, password) {
 		$('.addCheck img').attr('src', '');
 		localStorage.clear();
-		showLoading('Authenticating...');
+		showLoading('Authentification...');
 		var data = {
 			action : "login",
 			email : username,

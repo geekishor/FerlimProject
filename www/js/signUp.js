@@ -8,7 +8,7 @@ var signUpObject = {
 		});
 	},
 	signUpAuthenticate : function() {
-		showLoading('Registering...');
+		showLoading('Inscription...');
 		var firstNameVal = $.trim($("#txtFirstName").val());
 		var lastNameVal = $.trim($("#txtLastName").val());
 		var emailVal = $("#txtEmail").val();

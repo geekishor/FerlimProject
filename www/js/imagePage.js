@@ -45,8 +45,7 @@ var imagePageObject = {
 		var rs = confirm("Vous êtes sûr de vouloir envoyer?");
 		if (rs == true) {
 			var formData = {};
-			
-			
+						
 			formData.photoOne = $('#photoOne').attr('src');
 			formData.photoTwo = $('#photoTwo').attr('src');
 			formData.photoThree = $('#photoThree').attr('src');
@@ -73,7 +72,14 @@ var imagePageObject = {
 			    }
 			}
 			if(count > 0){
-				imagePageObject.pushHorseFormData(formData);
+				$('input textarea').blur();
+				showLoading('Envoie...');
+				if(localStorage.getItem('$horseId').length <= 0){
+					imagePageObject.pushHorseFormData(formData);
+				}else{
+					imagePageObject.pushFormData(formData);
+				}
+				
 			}else{
 				alert('Veuillez remplir au moins une valeur.');
 			}
@@ -82,34 +88,27 @@ var imagePageObject = {
 	},
 
 	pushHorseFormData : function(formData) {
-		showLoading('Submitting...');
-		
+				
 		var data = {
 			action : "create",
 			name : localStorage.getItem('$horseName'),
 			idcustomer : localStorage.getItem('$userId'), 
 			session_token :localStorage.getItem('$token')
 		};
+			
 		
-		var currentHorseName = localStorage.getItem('$horseName');
-		var oldHorseName = localStorage.getItem('$oldHorseName');
-		if( currentHorseName != oldHorseName ){
-			httpServiceObj.post(data, 'horse.php', function(result) {
-				if (result.response == "success") {
-					localStorage.setItem('$horseId', result.data.id);
-					imagePageObject.pushFormData(formData);
-				} else {
-					alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
-					hideLoading();
-				}
-			}, function(e) {
+		httpServiceObj.post(data, 'horse.php', function(result) {
+			if (result.response == "success") {
+				localStorage.setItem('$horseId', result.data.id);
+				imagePageObject.pushFormData(formData);
+			} else {
+				alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
 				hideLoading();
-				console.log(e);
-			});
-		}else{
-			imagePageObject.pushFormData(formData);
-		}
-
+			}
+		}, function(e) {
+			hideLoading();
+			console.log(e);
+		});		
 	},
 	pushFormData : function(formData) {
 		var data = {
@@ -131,13 +130,12 @@ var imagePageObject = {
 		
 		httpServiceObj.post(data, 'paw.php', function(result) {
 			if (result.response == "success") {				
-				alert("Demande bien envoyée.");			
-				var horseName = localStorage.getItem('$horseName');
-				localStorage.setItem('$oldHorseName',horseName);
-				$.mobile.changePage("#detailPage", {
+				alert("Demande bien envoyée.");		
+				location.reload();
+				$.mobile.changePage("#equipmentPage", {
 					transition : "none"					
 				});					
-				location.reload();
+				
 			} else {
 				alert("Une erreur est survenue. Veuillez réessayer ultérieuement!");
 				hideLoading();

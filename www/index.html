@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src  'self' data: *;">
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/jquerymobile.css" />
     <link rel="stylesheet" type="text/css" href="css/jquerymobile.nativedroid.css" />
@@ -118,16 +118,31 @@
                    <input type="text" name="horse_name" id="horseName"  value="" data-clear-btn="true"/>
                </li>
                <li data-role="fieldcontain" style="display:none;" id="selectHorse">
+<<<<<<< .mine
+                   <label style="width: 100%"><span class="lableClass"> Sélectionnez un cheval </span></label>
+||||||| .r26
+                   <label style="width: 100%"><span class="lableClass">Select horse </span></label>
+=======
                    <label style="width: 100%"><span class="lableClass">Sélectionnez un cheval</span></label>
+>>>>>>> .r27
                    <select id="selectHorseBox">
+<<<<<<< .mine
+                   		<option selected value="">Sélectionner</option>
+||||||| .r26
+                   		<option selected value="">Select Horse</option>
+                   		<option value="A">A</option>
+                   		<option value="B">B</option>
+                   		<option value="C">C</option>
+=======
                    		<option selected value="">Sélectionner</option>
                    		<option value="A">A</option>
                    		<option value="B">B</option>
                    		<option value="C">C</option>
+>>>>>>> .r27
                    </select>
                </li>
                <li>
-                   <button id="nextBtn" type="submit" data-theme="b" class="translateClass blueButton">Next</button>
+                   <button id="nextBtn" type="submit" data-theme="b" class="translateClass blueButton">Valider</button>
                </li>
            </ul>
         </div>
@@ -254,7 +269,7 @@
                   from Gallery</span>
                 </div>
                 <br />
-                <button type="button" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="imagePageObject.closePopUp()">Close</button>
+                <button type="button" id="closeBtn" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left" onclick="imagePageObject.closePopUp()">Close</button>
 
             </div>
         </div>
