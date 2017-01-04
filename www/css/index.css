@@ -2566,16 +2566,18 @@ html .ui-btn.ui-checkbox-off.ui-checkbox-off:before {
 	content: "\f096";
   	color: #993300;
   	font-family: FontAwesome;
-  	margin-left: -33px;
-  	margin-right: 7px;
+  	margin-left: -20px;
+  	margin-right: 0px;
+  	margin-top: 2px;
   	float: left;
 }
 html .ui-btn.ui-checkbox-on.ui-checkbox-on:before {
 	content: "\f046";
   	color: #993300;
   	font-family: FontAwesome;
-  	margin-left: -33px;
-  	margin-right: 7px;
+ 	margin-left: -20px;
+  	margin-right: 0px;
+  	margin-top: 2px;
   	float: left;
 }
 

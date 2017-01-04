@@ -48,6 +48,9 @@
                         <label for="txtPassword"><span class="translateClass lableClass">Mot de passe</span></label>
                         <input type="password" name="txtPassword" id="txtPassword" value="" data-clear-btn="false" placeholder="Entrez votre mot de passe...">
                     </li>
+                    <li data-role="fieldcontain">
+                        <label for="rememberMe" style="margin-left: -13px;"> Se souvenir de moi <input type="checkbox" name="rememberMe" id="rememberMe"  />  </label>
+                    </li>
                     <li>
                         <button id="loginButton" type="button" data-theme="b" onclick="indexObject.validate();" class="translateClass blueButton">Identifiez-vous</button>
                         <button id="signUpButton" type="button" data-theme="b" onclick="indexObject.signUp();" class="translateClass blueButton">Créer un nouveau compte</button>
@@ -111,7 +114,7 @@
      				<label for="newHorse">Nouveau cheval</label>
 					
 			     	<input type="radio" name="radio-choice" id="oldHorse" value="Old"  />
-			     	<label for="oldHorse">Vieux cheval</label>
+			     	<label for="oldHorse">Cheval déjà traité</label>
                </li>
                <li data-role="fieldcontain" id="horseNameBlock">
                    <label style="width: 100%"><span class="lableClass">Entrer le nom du cheval</span></label>
@@ -137,31 +140,31 @@
             <div class="leftBtn cancelButton"  onclick="detailPageObject.backToEquipment();" >
                 <img src="images/back.png" />
             </div>
-            <h3 style="display: inline-block; margin-left: 10px !important;">Pattes</h3>
+            <h3 style="display: inline-block; margin-left: 10px !important;">Sabot</h3>
         </div>
         <div id="content" data-role="content" data-theme='b'>
             <ul data-role="listview" data-inset="true" id="loginUL">
                 <li data-role="fieldcontain">
-                    <label><span class="lableClass">Sélectionner les pattes à traiter </span></label>
+                    <label><span class="lableClass">Sélectionner les sabot à traiter </span></label>
                     <table style="width: 100%" id="legt_buttons">
                         <tr>
                             <td>
                                 <button id="btn_AG" data-theme="a" class="addCheck">
-                                    <img src="" />Patte AG</button>
+                                    <img src="" />Sabot AG</button>
                             </td>
                             <td>
                                 <button id="btn_AD" data-theme="a" class="addCheck">
-                                    <img src="" />Patte AD</button>
+                                    <img src="" />Sabot AD</button>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <button id="btn_PG" data-theme="a" class="addCheck">
-                                    <img src="" />Patte PG</button>
+                                    <img src="" />Sabot PG</button>
                             </td>
                             <td>
                                 <button id="btn_PD" data-theme="a" class="addCheck">
-                                    <img src="" />Patte PD</button>
+                                    <img src="" />Sabot PD</button>
                             </td>
                         </tr>
                     </table>

@@ -5,6 +5,13 @@ var indexObject = {
 	},
 
 	onDeviceReady : function() {
+		$(function(){		
+			if(localStorage.getItem('$token') && localStorage.getItem('$token').length > 0 ){
+				$('#txtUserName').val(localStorage.getItem('$email'));
+				$('#txtPassword').val(localStorage.getItem('$password'));
+				$("#rememberMe").prop("checked", true).checkboxradio('refresh');
+			}
+		});
 		document.addEventListener("backbutton", onBackKeyPress, false);
 		window.addEventListener('native.keyboardshow', function(e) {
 			setTimeout(function() {
@@ -31,8 +38,12 @@ var indexObject = {
 	},
 
 	authenticate : function(username, password) {
-		$('.addCheck img').attr('src', '');
-		localStorage.clear();
+		$('.addCheck img').attr('src', '');	
+		
+		if($('#rememberMe').val() != "on"){
+			localStorage.clear();
+		}
+		
 		showLoading('Authentification...');
 		var data = {
 			action : "login",
@@ -42,10 +53,7 @@ var indexObject = {
 
 		httpServiceObj.post(data, 'customer.php', function(result) {
 			if (result.response == "success") {
-				indexObject.saveLoginInfo(result.data);
-				$.mobile.changePage("#equipmentPage", {
-					transition : "none"
-				});
+				indexObject.saveLoginInfo(result.data);			
 			} else {
 				alert("Adresse email ou mot de passe incorrect.");
 				hideLoading();
@@ -57,8 +65,14 @@ var indexObject = {
 	},
 
 	saveLoginInfo : function(info) {
+		localStorage.setItem('$email',$("#txtUserName").val());
+		localStorage.setItem('$password',$("#txtPassword").val());
 		localStorage.setItem('$userId', info.id);
 		localStorage.setItem('$token', info.session_token);
+		
+		$.mobile.changePage("#equipmentPage", {
+			transition : "none"
+		});
 	},
 
 	signUp : function() {
@@ -74,4 +88,13 @@ var indexObject = {
 		}
 	}
 };
+
+$(function(){	
+	$('#page').on('pagebeforeshow',function(){
+		if(!localStorage.getItem('$token')){
+			$("#rememberMe").prop("checked", false).checkboxradio('refresh');
+		}
+	});
+	
+});
 
