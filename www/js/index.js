@@ -5,13 +5,7 @@ var indexObject = {
 	},
 
 	onDeviceReady : function() {
-		$(function(){		
-			if(localStorage.getItem('$token') && localStorage.getItem('$token').length > 0 ){
-				$('#txtUserName').val(localStorage.getItem('$email'));
-				$('#txtPassword').val(localStorage.getItem('$password'));
-				$("#rememberMe").prop("checked", true).checkboxradio('refresh');
-			}
-		});
+		
 		document.addEventListener("backbutton", onBackKeyPress, false);
 		window.addEventListener('native.keyboardshow', function(e) {
 			setTimeout(function() {
@@ -19,6 +13,14 @@ var indexObject = {
 			}, 100);
 		});
 
+		$(function(){		
+			if(localStorage.getItem('$email') && localStorage.getItem('$email').length > 0 ){
+				$.mobile.changePage("#equipmentPage", {
+					transition : "none"
+				});
+			}
+		});
+	
 	},
 
 	validate : function() {
@@ -39,11 +41,7 @@ var indexObject = {
 
 	authenticate : function(username, password) {
 		$('.addCheck img').attr('src', '');	
-		
-		if($('#rememberMe').val() != "on"){
-			localStorage.clear();
-		}
-		
+	
 		showLoading('Authentification...');
 		var data = {
 			action : "login",
@@ -65,8 +63,15 @@ var indexObject = {
 	},
 
 	saveLoginInfo : function(info) {
-		localStorage.setItem('$email',$("#txtUserName").val());
-		localStorage.setItem('$password',$("#txtPassword").val());
+	
+		if($('#rememberMe').is(':checked')){
+			localStorage.setItem('$email',$("#txtUserName").val());
+			localStorage.setItem('$password',$("#txtPassword").val());
+		}else{
+			
+			localStorage.clear();
+		}
+		
 		localStorage.setItem('$userId', info.id);
 		localStorage.setItem('$token', info.session_token);
 		
