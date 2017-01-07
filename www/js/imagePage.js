@@ -34,9 +34,13 @@ var imagePageObject = {
 	deleteImage : function(obj) {
 		var rs = confirm("Etes-vous sûr que vous voulez supprimer?");
 		if (rs == true) {
-			var deleteImageId = $(obj).prev().attr('id');
-			var filename = deleteImageId + ".jpg";
-			deleteImageFile(filename, deleteImageId);
+			var photoId = $(obj).prev().attr('id');
+			//var filename = deleteImageId + ".jpg";
+			//deleteImageFile(filename, deleteImageId);
+			$('#' + photoId).attr("src", "images/images.png");
+			$('#' + photoId).attr("height", "");
+			$('#' + photoId).attr("width", "");
+			$('#' + photoId).next().css("display", "none");
 		}
 
 	},
@@ -174,13 +178,14 @@ function onPhotoDataSuccess(imageData) {
 
 	var filename = indexObject.photoId + ".jpg";
 	var dataType = "image/jpeg";
-	savebase64AsImageFile(folderpath, filename, imageData, dataType);
+	
+	//savebase64AsImageFile(folderpath, filename, imageData, dataType);
 }
 
 function onFail(message) {
 	console.log(message);
 }
-
+/*
 function b64toBlob(b64Data, contentType, sliceSize) {
 	contentType = contentType || '';
 	sliceSize = sliceSize || 512;
@@ -205,9 +210,9 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 		type : contentType
 	});
 	return blob;
-}
+}*/
 
-function savebase64AsImageFile(folderpath, filename, content, contentType) {
+/*function savebase64AsImageFile(folderpath, filename, content, contentType) {
 	// Convert the base64 string in a Blob
 	var DataBlob = b64toBlob(content, contentType);
 	console.log("Starting to write the file :3");
@@ -294,5 +299,4 @@ function deleteImageFile(fileName, photoId) {
 		});
 
 	});
-
-}
+}*/

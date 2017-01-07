@@ -49,7 +49,7 @@
                         <input type="password" name="txtPassword" id="txtPassword" value="" data-clear-btn="false" placeholder="Entrez votre mot de passe...">
                     </li>
                     <li data-role="fieldcontain">
-                        <label for="rememberMe" style="margin-left: -13px;"> Se souvenir de moi <input type="checkbox" name="rememberMe" id="rememberMe"  />  </label>
+                        <label for="rememberMe" style="margin-left: -13px;"> Se souvenir de moi <input type="checkbox" name="rememberMe" id="rememberMe" onclick="$('input').blur();" />  </label>
                     </li>
                     <li>
                         <button id="loginButton" type="button" data-theme="b" onclick="indexObject.validate();" class="translateClass blueButton">Identifiez-vous</button>

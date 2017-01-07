@@ -13,7 +13,8 @@ var equipmentPageObject = {
 			httpServiceObj.post(data, 'customer.php', function(result) {
 				if (result.response == "success") {
 					localStorage.clear();
-					$("input").val('');
+					$("#txtUserName").val('');
+					$("#txtPassword").val('');
 					$.mobile.changePage("#page", {
 						transition : "none"
 					});
@@ -30,7 +31,7 @@ var equipmentPageObject = {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function() {	
     $('input:radio').change(function() {
 	   if ($(this).val() == 'New') {
 	    	$('#horseNameBlock').show();
@@ -69,9 +70,7 @@ $(document).ready(function() {
     				transition : "none"
     			});
     		}
-    	}
-    	
-    
+    	}       
     });
     
     
@@ -82,14 +81,16 @@ $(document).ready(function() {
 			idcustomer : localStorage.getItem('$userId'),
 			session_token : localStorage.getItem('$token')
 		};
-
+		
 		httpServiceObj.post(data, 'horse.php', function(result) {
 			if (result.response == "success") {
-				var options = '';
+				$('#selectHorseBox').empty();
+				var options = '<option value="" selected>Sélectionner</option>';
 				for(r in result.data){
 					options += '<option value="'+result.data[r].id+'">'+ result.data[r].name + '</option>';
 				}	
 				$('#selectHorseBox').append(options);
+				$('#selectHorseBox').selectmenu('refresh');
 			} else {				
 				hideLoading();
 			}
